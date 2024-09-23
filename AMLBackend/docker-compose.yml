@@ -1,0 +1,6 @@
+﻿services:
+  amlbackend:
+    image: amlbackend
+    build:
+      context: .
+      dockerfile: Dockerfile
