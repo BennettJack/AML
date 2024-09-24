@@ -1,6 +1,6 @@
-@AMLBackend_HostAddress = http://localhost:5287
+@AmlBackend_HostAddress = http://localhost:5204
 
-GET {{AMLBackend_HostAddress}}/weatherforecast/
+GET {{AmlBackend_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
