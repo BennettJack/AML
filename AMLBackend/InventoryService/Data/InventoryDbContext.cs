@@ -17,5 +17,9 @@ namespace InventoryService2.Data
 
         public DbSet<Book> Books { get; set; }
 
-}
+        public DbSet<Publisher> Publisher { get; set; }
+        public DbSet<Genre> Genre { get; set; }
+        public DbSet<Author> Author { get; set; }
+
+    }
 }

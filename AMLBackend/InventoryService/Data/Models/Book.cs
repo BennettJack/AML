@@ -8,10 +8,10 @@ namespace InventoryService2.Data.Models
         public int BookId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public string Author { get; set; }
+        public Author Author { get; set; }
         public DateOnly PublishDate { get; set; }
-        public string Genre { get; set; }
-        public string Publisher { get; set; }
+        public Genre Genre { get; set; }
+        public Publisher Publisher { get; set; }
         public int Availability {  get; set; }
         public int PageCount { get; set; }
         public string Type { get; set; }
