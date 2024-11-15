@@ -3761,11 +3761,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\AML\\AMLBackend\\Branch Information\\BranchInformation\\BranchInformation.csproj",
+      "projectUniqueName": "D:\\AML\\AMLBackend\\Branch Information\\BranchInformation.csproj",
       "projectName": "BranchInformation",
-      "projectPath": "D:\\AML\\AMLBackend\\Branch Information\\BranchInformation\\BranchInformation.csproj",
+      "projectPath": "D:\\AML\\AMLBackend\\Branch Information\\BranchInformation.csproj",
       "packagesPath": "C:\\Users\\xBarbarionX\\.nuget\\packages\\",
-      "outputPath": "D:\\AML\\AMLBackend\\Branch Information\\BranchInformation\\obj\\",
+      "outputPath": "D:\\AML\\AMLBackend\\Branch Information\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
