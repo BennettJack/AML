@@ -1,4 +1,3 @@
-H:\Projects\AML\AmlBackend\InventoryService\bin\Debug\net8.0\appsettings.Development.json
 H:\Projects\AML\AmlBackend\InventoryService\bin\Debug\net8.0\appsettings.json
 H:\Projects\AML\AmlBackend\InventoryService\bin\Debug\net8.0\InventoryService.exe
 H:\Projects\AML\AmlBackend\InventoryService\bin\Debug\net8.0\InventoryService.deps.json

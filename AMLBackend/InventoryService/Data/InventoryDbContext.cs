@@ -7,16 +7,17 @@ namespace InventoryService.Data
     {
         public InventoryDbContext(DbContextOptions<InventoryDbContext> options)
         : base(options)
+        {
 
-    {
-
-    }
+        }
         public DbSet<Book> Books { get; set; }
-
         public DbSet<Publisher> Publishers { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<BookAuthorConnection>  BookAuthorConnections { get; set; }
         public DbSet<BookGenreConnection> BookGenreConnections { get; set; }
+        public DbSet<Format> Formats { get; set; }
+        public DbSet<BookFormatConnection> BookFormatConnections { get; set; }
+        public DbSet<BookStockEntry> BookStockEntries { get; set; }
     }
 }

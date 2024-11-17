@@ -57,7 +57,34 @@ namespace InventoryService.Controllers
                 await _context.AddAsync(bookAuthorConnection);
             }
 
+            foreach (var formatId in bookSubmission.FormatIds)
+            {
+                var bookFormatConnection = new BookFormatConnection()
+                {
+                    Book = await _context.Books.FirstOrDefaultAsync(b => b.SerialNumber == bookSubmission.SerialNumber),
+                    Format = await _context.Formats.FirstOrDefaultAsync(a => a.FormatId == formatId),
+                };
+
+                await _context.AddAsync(bookFormatConnection);
+            }
+            
             await _context.SaveChangesAsync();
+
+            var formatEntries =
+                _context.BookFormatConnections.Where(f => f.Book.SerialNumber == bookSubmission.SerialNumber).ToList();
+
+            foreach (var formatEntry in formatEntries)
+            {
+                var stockEntry = new BookStockEntry
+                {
+                    BookFormatConnection = formatEntry,
+                    StockCount = 0
+                };
+
+                await _context.AddAsync(stockEntry);
+            }
+            await _context.SaveChangesAsync();
+            
             return Ok();
         }
     }

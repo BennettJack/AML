@@ -3,6 +3,7 @@ using System;
 using InventoryService.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventoryService.Migrations
 {
     [DbContext(typeof(InventoryDbContext))]
-    partial class InventoryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241117190221_Update")]
+    partial class Update
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.10");
@@ -126,25 +129,6 @@ namespace InventoryService.Migrations
                     b.ToTable("BookGenreConnections");
                 });
 
-            modelBuilder.Entity("InventoryService.Data.Models.BookStockEntry", b =>
-                {
-                    b.Property<int>("BookStockEntryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("BookFormatConnectionId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("StockCount")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("BookStockEntryId");
-
-                    b.HasIndex("BookFormatConnectionId");
-
-                    b.ToTable("BookStockEntries");
-                });
-
             modelBuilder.Entity("InventoryService.Data.Models.Format", b =>
                 {
                     b.Property<int>("FormatId")
@@ -254,17 +238,6 @@ namespace InventoryService.Migrations
                     b.Navigation("Book");
 
                     b.Navigation("Genre");
-                });
-
-            modelBuilder.Entity("InventoryService.Data.Models.BookStockEntry", b =>
-                {
-                    b.HasOne("InventoryService.Data.Models.BookFormatConnection", "BookFormatConnection")
-                        .WithMany()
-                        .HasForeignKey("BookFormatConnectionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("BookFormatConnection");
                 });
 #pragma warning restore 612, 618
         }

@@ -15,6 +15,8 @@ public class NewBookSubmissionDto
     [Required]
     public List<int>? GenreIds { get; set; }
     [Required]
+    public List<int>? FormatIds { get; set; }
+    [Required]
     public int? PublisherId { get; set; }
     [Required]
     public int? PageCount { get; set; }

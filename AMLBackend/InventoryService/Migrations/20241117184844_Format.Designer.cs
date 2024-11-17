@@ -3,6 +3,7 @@ using System;
 using InventoryService.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventoryService.Migrations
 {
     [DbContext(typeof(InventoryDbContext))]
-    partial class InventoryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241117184844_Format")]
+    partial class Format
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.10");
@@ -39,21 +42,26 @@ namespace InventoryService.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("PageCount")
+                        .IsRequired()
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("PublishDate")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("PublisherId")
+                    b.Property<int>("PublisherId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int?>("SerialNumber")
+                        .IsRequired()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("BookId");
@@ -126,28 +134,9 @@ namespace InventoryService.Migrations
                     b.ToTable("BookGenreConnections");
                 });
 
-            modelBuilder.Entity("InventoryService.Data.Models.BookStockEntry", b =>
-                {
-                    b.Property<int>("BookStockEntryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("BookFormatConnectionId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("StockCount")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("BookStockEntryId");
-
-                    b.HasIndex("BookFormatConnectionId");
-
-                    b.ToTable("BookStockEntries");
-                });
-
             modelBuilder.Entity("InventoryService.Data.Models.Format", b =>
                 {
-                    b.Property<int>("FormatId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -155,7 +144,7 @@ namespace InventoryService.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("FormatId");
+                    b.HasKey("Id");
 
                     b.ToTable("Formats");
                 });
@@ -194,7 +183,9 @@ namespace InventoryService.Migrations
                 {
                     b.HasOne("InventoryService.Data.Models.Publisher", "Publisher")
                         .WithMany()
-                        .HasForeignKey("PublisherId");
+                        .HasForeignKey("PublisherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Publisher");
                 });
@@ -254,17 +245,6 @@ namespace InventoryService.Migrations
                     b.Navigation("Book");
 
                     b.Navigation("Genre");
-                });
-
-            modelBuilder.Entity("InventoryService.Data.Models.BookStockEntry", b =>
-                {
-                    b.HasOne("InventoryService.Data.Models.BookFormatConnection", "BookFormatConnection")
-                        .WithMany()
-                        .HasForeignKey("BookFormatConnectionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("BookFormatConnection");
                 });
 #pragma warning restore 612, 618
         }
