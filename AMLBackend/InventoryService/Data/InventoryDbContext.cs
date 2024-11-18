@@ -7,14 +7,8 @@ namespace InventoryService2.Data
     {
         public InventoryDbContext(DbContextOptions<InventoryDbContext> options)
         : base(options)
-
     {
-
     }
-
-
-
-
         public DbSet<Book> Books { get; set; }
 
         public DbSet<Publisher> Publisher { get; set; }

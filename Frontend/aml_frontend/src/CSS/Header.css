@@ -1,0 +1,12 @@
+.headerWrapper{
+    margin: 0;
+    padding: 10px;
+}
+
+header {
+    background-color:rgb(0, 162, 255);
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    padding: 20px 20px;
+}
