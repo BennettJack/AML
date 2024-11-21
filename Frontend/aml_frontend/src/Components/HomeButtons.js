@@ -6,10 +6,10 @@ const HomeButtons = () => {
         <>
             <div className = "buttonWrapper">
                 <form>
-                    <button>Become A Member</button>
-                    <button>Find A Branch</button>
-                    <button>Member Login</button>
-                    <button>Seach Catalogue</button>
+                    <button type="button">Become A Member</button>
+                    <button type="button">Find A Branch</button>
+                    <button type="button">Member Login</button>
+                    <button type="button">Seach Catalogue</button>
                 </form>
             </div>
             <div>
