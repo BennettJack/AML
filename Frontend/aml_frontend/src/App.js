@@ -8,6 +8,7 @@ import {
   NavLink,
 } from "react-router-dom";
 import Home from './Pages/Home.js';
+import LibraryList from './Components/LibraryList.js';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index element={<Home />} />
+          <Route path={"/LibraryList"} element={<LibraryList/>} />
         </Routes>
       </BrowserRouter>
     </div>

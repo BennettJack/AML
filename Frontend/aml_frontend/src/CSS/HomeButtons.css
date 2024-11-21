@@ -13,3 +13,8 @@ button {
     border: none;
     color: rgb(255, 255, 255);
 }
+.libraryImage {
+    display: flex;
+    justify-content: center;
+    padding: 10px 10px;
+}

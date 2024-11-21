@@ -7,13 +7,13 @@ const HomeButtons = () => {
             <div className = "buttonWrapper">
                 <form>
                     <button type="button">Become A Member</button>
-                    <button type="button">Find A Branch</button>
+                    <a href="/LibraryList">Find A Branch</a>
                     <button type="button">Member Login</button>
                     <button type="button">Seach Catalogue</button>
                 </form>
             </div>
-            <div>
-                <img src ={LibraryImage} alt="Library Image"></img>;
+            <div className = "libraryImage">;
+                <img src ={LibraryImage} alt="Library Image" width="700" height="500"></img>;
             </div>
         </>
     )
