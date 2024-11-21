@@ -1,0 +1,20 @@
+.buttonWrapper {
+    display: flex;
+    justify-content: center;
+    padding-left: 25%;
+    padding-right: 25%;
+}
+button {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 4px 20px;
+    cursor: pointer;
+    background-color: rgb(0, 162, 255);
+    border: none;
+    color: rgb(255, 255, 255);
+}
+.libraryImage {
+    display: flex;
+    justify-content: center;
+    padding: 10px 10px;
+}
