@@ -19,8 +19,8 @@ namespace InventoryService.Controllers
         
             
         [HttpPost]
-        [Route("AddStock")]
-        public async Task<IActionResult> NewBook([FromBody] BookStockUpdateDto bookStockUpdateDto)
+        [Route("AddBookStock")]
+        public async Task<IActionResult> AddBookStock([FromBody] BookStockUpdateDto bookStockUpdateDto)
         {
             
             await _context.BookStockEntries.Where(e =>
