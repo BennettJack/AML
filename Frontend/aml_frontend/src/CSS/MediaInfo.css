@@ -1,0 +1,21 @@
+.MediaInfo {
+    display: flex;
+    justify-content:left;
+    margin-left: 30%;
+}
+.MediaImage {
+
+}
+.Info {
+    display: flex;
+    justify-content: center;
+}
+.InfoLine1{
+}
+.InfoLine2{
+    margin: 0px 100px;
+}
+.MediaDescription {
+    margin-left: 30%;
+    margin-right: 30%;
+}
