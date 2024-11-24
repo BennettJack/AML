@@ -23,6 +23,7 @@ function App() {
           <Route path="/profile" element={<MemberProfile />} />
           <Route path={"/Browse"} element={<Browse/>} />
           <Route path={"/MediaResult"} element={<MediaResult/>} />
+          <Route path={"/MemberProfile"} element={<MemberProfile/>} />
         </Routes>
       </BrowserRouter>
     </div>
