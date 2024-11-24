@@ -7,7 +7,7 @@ const HomeButtons = () => {
             <div className = "buttonWrapper">
                 <form>
                     <button type="button">Become A Member</button>
-                    <a href="/LibraryList" class="button">Find A Branch</a>
+                    <a href="/LibraryList">Find A Branch</a>
                     <button type="button">Member Login</button>
                     <button type="button">Seach Catalogue</button>
                 </form>
