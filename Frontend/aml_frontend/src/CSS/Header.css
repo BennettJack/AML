@@ -1,12 +1,84 @@
-.headerWrapper{
-    margin: 0;
-    padding: 10px;
+/* General Header Styles */
+.customHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #506482;
+    padding: 10px 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-header {
-    background-color:rgb(0, 162, 255);
+/* Logo Section */
+.logoContainer {
+    flex: 1;
     display: flex;
-    justify-content:center;
     align-items: center;
-    padding: 20px 20px;
+}
+
+.logoLink {
+    text-decoration: none;
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #fff;
+}
+
+.logoPart1 {
+    color: red;
+}
+
+.logoPart2 {
+    color: white;
+}
+
+.logoPart3 {
+    color: lightblue;
+}
+
+/* Navigation Menu */
+.navigationMenu {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+}
+
+.navList {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+    margin: 0;
+    padding: 0;
+}
+
+.navItem {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1em;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.navItem:hover {
+    color: #ff6f61;
+}
+
+/* Icons */
+.navItem i {
+    margin-right: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .customHeader {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navigationMenu {
+        justify-content: flex-start;
+    }
+
+    .navList {
+        flex-direction: column;
+        gap: 15px;
+    }
 }
