@@ -1,0 +1,75 @@
+/* General Page Layout */
+.pageWrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.profileContainer {
+    flex: 1;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+/* Profile Header */
+.profileContainer h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.profileContainer h3 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+/* Profile Details */
+.profileDetails p {
+    font-size: 1.1em;
+    margin: 5px 0;
+}
+
+.resetButton {
+    margin-top: 20px;
+    padding: 8px 15px;
+    font-size: 1em;
+    font-weight: bold;
+    border: none;
+    background-color: #ff6f61;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.resetButton:hover {
+    background-color: #ff3b2d;
+}
+
+/* Profile Table */
+.profileTable {
+    width: 100%;
+    margin-top: 30px;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+
+.profileTable td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+    font-size: 1em;
+}
+
+.profileTable td:first-child {
+    font-weight: bold;
+    width: 30%;
+    background-color: #f9f9f9;
+}
+
+.profileTable td:last-child {
+    width: 70%;
+}
