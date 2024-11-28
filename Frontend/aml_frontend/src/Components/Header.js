@@ -14,10 +14,26 @@ const Header = () => {
             </div>
             <nav className="navigationMenu">
                 <ul className="navList">
-                    <li><Link to="/" className="navItem"><i className="fas fa-home"></i> Home</Link></li>
-                    <li><Link to="/browse" className="navItem"><i className="fas fa-folder"></i> Browse</Link></li>
-                    <li><Link to="/branches" className="navItem"><i className="fas fa-user"></i> Find A Branch</Link></li>
-                    <li><Link to="/membership" className="navItem"><i className="fas fa-user-plus"></i> Become a Member</Link></li>
+                    <li>
+                        <Link to="/" className="navItem">
+                            <i className="fas fa-home"></i> Home
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/browse" className="navItem">
+                            <i className="fas fa-folder"></i> Browse
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/LibraryList" className="navItem">
+                            <i className="fas fa-user"></i> Find A Branch
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/register" className="navItem">
+                            <i className="fas fa-user-plus"></i> Become a Member
+                        </Link>
+                    </li>
                 </ul>
             </nav>
         </header>
