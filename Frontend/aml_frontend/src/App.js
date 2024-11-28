@@ -12,6 +12,8 @@ import LibraryList from './Components/LibraryList.js';
 import MemberProfile from "./Components/MemberProfile";
 import Browse from './Pages/Browse.js';
 import MediaResult from './Pages/MediaResult.js';
+import Register from "./Components/Register";
+import Login from "./Components/Login";
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
           <Route path={"/Browse"} element={<Browse/>} />
           <Route path={"/MediaResult"} element={<MediaResult/>} />
           <Route path={"/MemberProfile"} element={<MemberProfile/>} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
     </div>
