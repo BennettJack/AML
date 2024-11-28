@@ -1,4 +1,5 @@
 import Header from '../Components/Header.js';
+import Footer from '../Components/Footer';
 import '../CSS/LibraryList.css';
 
 const LibraryList = () => {
@@ -22,6 +23,7 @@ const LibraryList = () => {
                     <li>York Library</li>
                 </ul>
             </div>
+            <Footer />
         </>
     )
 }
