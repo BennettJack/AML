@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrowsingService", "BrowsingService.csproj", "{FBBE79D1-F43C-4132-9C56-DB6533CFC556}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FBBE79D1-F43C-4132-9C56-DB6533CFC556}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBBE79D1-F43C-4132-9C56-DB6533CFC556}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBBE79D1-F43C-4132-9C56-DB6533CFC556}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBBE79D1-F43C-4132-9C56-DB6533CFC556}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

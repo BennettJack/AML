@@ -1,6 +1,7 @@
 ﻿using InventoryService.Data;
 using InventoryService.Data.Models;
 using InventoryService.Data.Models.DTO;
+using InventoryService.Data.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,10 +12,12 @@ namespace InventoryService.Controllers
     public class BookController : ControllerBase
     {
         private readonly InventoryDbContext _context;
+        private readonly BookRepository _bookRepository;
 
-        public BookController(InventoryDbContext context)
+        public BookController(InventoryDbContext context, BookRepository bookRepository)
         {
             _context = context;
+            _bookRepository = bookRepository;
         }
         [HttpPost]
         [Route("NewBook")]
@@ -25,7 +28,6 @@ namespace InventoryService.Controllers
                 Title = bookSubmission.Title,
                 Description = bookSubmission.Description,
                 PublishDate = DateTime.Parse(bookSubmission.PublishDate),
-                Publisher = await _context.Publishers.FirstOrDefaultAsync(p => p.PublisherId == bookSubmission.PublisherId),
                 PageCount = bookSubmission.PageCount,
                 SerialNumber = bookSubmission.SerialNumber
             };
@@ -34,7 +36,7 @@ namespace InventoryService.Controllers
             await _context.SaveChangesAsync();
 
 
-            foreach (var genreId in bookSubmission.GenreIds)
+            /*foreach (var genreId in bookSubmission.GenreIds)
             {
                 var bookGenreConnection = new BookGenreConnection
                 {
@@ -43,8 +45,8 @@ namespace InventoryService.Controllers
                 };
                 
                 await _context.AddAsync(bookGenreConnection);
-            }
-
+            }*/
+            await _bookRepository.AddBookGenreConnection(bookSubmission.GenreIds, bookSubmission.SerialNumber);
 
             foreach (var authorId in bookSubmission.AuthorIds)
             {

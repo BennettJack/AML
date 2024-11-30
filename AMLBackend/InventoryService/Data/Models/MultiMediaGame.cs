@@ -1,6 +1,9 @@
-﻿namespace InventoryService.Data.Models
+﻿using InventoryService.Data.Models.Media;
+
+namespace InventoryService.Data.Models
 {
-    public class MultiMediaGame
+    public class MultiMediaGame : MediaModel
     {
+        
     }
 }

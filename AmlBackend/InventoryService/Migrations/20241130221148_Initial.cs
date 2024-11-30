@@ -5,7 +5,7 @@
 namespace InventoryService.Migrations
 {
     /// <inheritdoc />
-    public partial class Formats : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

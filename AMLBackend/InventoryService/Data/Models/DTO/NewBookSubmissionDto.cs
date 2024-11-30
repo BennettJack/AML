@@ -17,9 +17,9 @@ public class NewBookSubmissionDto
     [Required]
     public List<int>? FormatIds { get; set; }
     [Required]
-    public int? PublisherId { get; set; }
+    public int PublisherId { get; set; }
     [Required]
-    public int? PageCount { get; set; }
+    public int PageCount { get; set; }
     [Required]
-    public int? SerialNumber { get; set; }
+    public int SerialNumber { get; set; }
 }

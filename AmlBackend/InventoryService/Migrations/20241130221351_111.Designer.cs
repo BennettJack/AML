@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventoryService.Migrations
 {
     [DbContext(typeof(InventoryDbContext))]
-    [Migration("20241117190221_Update")]
-    partial class Update
+    [Migration("20241130221351_111")]
+    partial class _111
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,37 +33,23 @@ namespace InventoryService.Migrations
                     b.HasKey("AuthorId");
 
                     b.ToTable("Authors");
-                });
 
-            modelBuilder.Entity("InventoryService.Data.Models.Book", b =>
-                {
-                    b.Property<int>("BookId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int?>("PageCount")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime?>("PublishDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int?>("PublisherId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("SerialNumber")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("BookId");
-
-                    b.HasIndex("PublisherId");
-
-                    b.ToTable("Books");
+                    b.HasData(
+                        new
+                        {
+                            AuthorId = 1,
+                            AuthorName = "J.R.R Tolkien"
+                        },
+                        new
+                        {
+                            AuthorId = 2,
+                            AuthorName = "Patric Rothfuss"
+                        },
+                        new
+                        {
+                            AuthorId = 3,
+                            AuthorName = "Steven King"
+                        });
                 });
 
             modelBuilder.Entity("InventoryService.Data.Models.BookAuthorConnection", b =>
@@ -129,6 +115,25 @@ namespace InventoryService.Migrations
                     b.ToTable("BookGenreConnections");
                 });
 
+            modelBuilder.Entity("InventoryService.Data.Models.BookStockEntry", b =>
+                {
+                    b.Property<int>("BookStockEntryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("BookFormatConnectionId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("StockCount")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("BookStockEntryId");
+
+                    b.HasIndex("BookFormatConnectionId");
+
+                    b.ToTable("BookStockEntries");
+                });
+
             modelBuilder.Entity("InventoryService.Data.Models.Format", b =>
                 {
                     b.Property<int>("FormatId")
@@ -142,6 +147,73 @@ namespace InventoryService.Migrations
                     b.HasKey("FormatId");
 
                     b.ToTable("Formats");
+
+                    b.HasData(
+                        new
+                        {
+                            FormatId = 1,
+                            FormatName = "Paperback"
+                        },
+                        new
+                        {
+                            FormatId = 2,
+                            FormatName = "Hardback"
+                        },
+                        new
+                        {
+                            FormatId = 3,
+                            FormatName = "Digital"
+                        },
+                        new
+                        {
+                            FormatId = 4,
+                            FormatName = "DVD"
+                        },
+                        new
+                        {
+                            FormatId = 5,
+                            FormatName = "Bluray"
+                        },
+                        new
+                        {
+                            FormatId = 6,
+                            FormatName = "Streaming"
+                        },
+                        new
+                        {
+                            FormatId = 7,
+                            FormatName = "Journal"
+                        },
+                        new
+                        {
+                            FormatId = 8,
+                            FormatName = "Newspaper"
+                        },
+                        new
+                        {
+                            FormatId = 9,
+                            FormatName = "Magazine"
+                        },
+                        new
+                        {
+                            FormatId = 10,
+                            FormatName = "CD"
+                        },
+                        new
+                        {
+                            FormatId = 11,
+                            FormatName = "PS5Game"
+                        },
+                        new
+                        {
+                            FormatId = 12,
+                            FormatName = "SwitchGame"
+                        },
+                        new
+                        {
+                            FormatId = 13,
+                            FormatName = "XboxGame"
+                        });
                 });
 
             modelBuilder.Entity("InventoryService.Data.Models.Genre", b =>
@@ -150,13 +222,62 @@ namespace InventoryService.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("GenreName")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("GenreId");
 
                     b.ToTable("Genres");
+
+                    b.HasData(
+                        new
+                        {
+                            GenreId = 1,
+                            GenreName = "Horror"
+                        },
+                        new
+                        {
+                            GenreId = 2,
+                            GenreName = "Action"
+                        },
+                        new
+                        {
+                            GenreId = 3,
+                            GenreName = "Comedy"
+                        });
+                });
+
+            modelBuilder.Entity("InventoryService.Data.Models.Media.MediaModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("PublishDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<long?>("SerialNumber")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MediaModels");
+
+                    b.HasDiscriminator().HasValue("MediaModel");
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("InventoryService.Data.Models.Publisher", b =>
@@ -172,15 +293,36 @@ namespace InventoryService.Migrations
                     b.HasKey("PublisherId");
 
                     b.ToTable("Publishers");
+
+                    b.HasData(
+                        new
+                        {
+                            PublisherId = 1,
+                            PublisherName = "Penguin"
+                        },
+                        new
+                        {
+                            PublisherId = 2,
+                            PublisherName = "Sony"
+                        },
+                        new
+                        {
+                            PublisherId = 3,
+                            PublisherName = "Activision"
+                        });
                 });
 
             modelBuilder.Entity("InventoryService.Data.Models.Book", b =>
                 {
-                    b.HasOne("InventoryService.Data.Models.Publisher", "Publisher")
-                        .WithMany()
-                        .HasForeignKey("PublisherId");
+                    b.HasBaseType("InventoryService.Data.Models.Media.MediaModel");
 
-                    b.Navigation("Publisher");
+                    b.Property<int>("BookId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("PageCount")
+                        .HasColumnType("INTEGER");
+
+                    b.HasDiscriminator().HasValue("Book");
                 });
 
             modelBuilder.Entity("InventoryService.Data.Models.BookAuthorConnection", b =>
@@ -238,6 +380,17 @@ namespace InventoryService.Migrations
                     b.Navigation("Book");
 
                     b.Navigation("Genre");
+                });
+
+            modelBuilder.Entity("InventoryService.Data.Models.BookStockEntry", b =>
+                {
+                    b.HasOne("InventoryService.Data.Models.BookFormatConnection", "BookFormatConnection")
+                        .WithMany()
+                        .HasForeignKey("BookFormatConnectionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BookFormatConnection");
                 });
 #pragma warning restore 612, 618
         }
