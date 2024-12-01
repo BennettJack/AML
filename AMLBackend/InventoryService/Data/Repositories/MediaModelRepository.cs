@@ -42,7 +42,7 @@ public class MediaModelRepository(InventoryDbContext _context)
             _context.MediaModelFormatConnections.Where(f => f.Media.SerialNumber == serialNumber).ToList();
 
         var client = new HttpClient();
-        var response = await client.GetAsync("https://localhost:7278/api/Branch/UpdateBook");
+        var response = await client.GetAsync("https://localhost:7278/api/Branch/GetBranches");
         var branches = await response.Content.ReadFromJsonAsync<List<BranchDto>>();
         foreach (var branch in branches)
         {

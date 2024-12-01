@@ -14,6 +14,7 @@ import Browse from './Pages/Browse.js';
 import MediaResult from './Pages/MediaResult.js';
 import Register from "./Components/Register";
 import Login from "./Components/Login";
+import NewMediaSubmission from "./Pages/NewMediaSubmission/NewMediaSubmission";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path={"/MemberProfile"} element={<MemberProfile/>} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path={"/NewMediaSubmission"} element={<NewMediaSubmission/>} />
         </Routes>
       </BrowserRouter>
     </div>

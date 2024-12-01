@@ -20,7 +20,7 @@ namespace InventoryService.Controllers
             
         [HttpPost]
         [Route("UpdateStock")]
-        public async Task<IActionResult> AddBookStock([FromBody] List<StockUpdateDto> stockUpdateDto)
+        public async Task<IActionResult> UpdateStock([FromBody] List<StockUpdateDto> stockUpdateDto)
         {
             foreach (var update in stockUpdateDto)
             {
@@ -32,6 +32,18 @@ namespace InventoryService.Controllers
 
 
             await _context.SaveChangesAsync();
+            return Ok();
+        }
+        
+        [HttpPost]
+        [Route("TransferStock")]
+        public async Task<IActionResult> TransferStock([FromBody] StockTransferDto stockTransfer)
+        {   
+            await _context.StockEntries.Where(e =>
+                e.StockEntryId == stockTransfer.StockEntryId).ExecuteUpdateAsync(
+                s => s.SetProperty(e => e.StockCount, 
+                    e => e.StockCount - stockTransfer.TransferCount));
+            
             return Ok();
         }
     }

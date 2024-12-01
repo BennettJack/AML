@@ -16,10 +16,12 @@ public class BranchController : ControllerBase
     }
     
     [HttpGet]
-    [Route("UpdateBook")]
+    [Route("GetBranches")]
     public async Task<IActionResult> GetBranches()
     {
         var branches = await _context.Branches.ToListAsync();
         return Ok(branches);
     }
+
+    
 }
