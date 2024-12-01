@@ -1,4 +1,4 @@
-﻿using InventoryService.Data.Models;
+using InventoryService.Data.Models;
 using InventoryService.Data.Models.CDDVD;
 using InventoryService.Data.Models.Media;
 using Microsoft.EntityFrameworkCore;

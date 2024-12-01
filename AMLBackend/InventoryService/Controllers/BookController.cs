@@ -1,4 +1,4 @@
-﻿using InventoryService.Data.Models;
+using InventoryService.Data.Models;
 using InventoryService.Data.Models.DTO;
 using InventoryService.Data.Repositories;
 using Microsoft.AspNetCore.Mvc;

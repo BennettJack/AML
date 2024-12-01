@@ -1,4 +1,4 @@
-﻿namespace InventoryService.Data.Models
+namespace InventoryService.Data.Models
 {
     public class Publisher
     {
