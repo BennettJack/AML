@@ -1,4 +1,6 @@
-﻿namespace InventoryService2.Data.Models
+﻿using InventoryService.Data.Models;
+
+namespace InventoryService2.Data.Models
 {
     public class Periodical
     {

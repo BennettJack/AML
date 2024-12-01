@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using InventoryService.Data.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace InventoryService2.Data.Models
 {
