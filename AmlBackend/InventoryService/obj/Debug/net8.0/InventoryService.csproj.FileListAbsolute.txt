@@ -131,3 +131,4 @@ H:\Projects\AML\AmlBackend\InventoryService\obj\Debug\net8.0\refint\InventorySer
 H:\Projects\AML\AmlBackend\InventoryService\obj\Debug\net8.0\InventoryService.pdb
 H:\Projects\AML\AmlBackend\InventoryService\obj\Debug\net8.0\InventoryService.genruntimeconfig.cache
 H:\Projects\AML\AmlBackend\InventoryService\obj\Debug\net8.0\ref\InventoryService.dll
+H:\Projects\AML\AmlBackend\InventoryService\bin\Debug\net8.0\appsettings.Development.json
