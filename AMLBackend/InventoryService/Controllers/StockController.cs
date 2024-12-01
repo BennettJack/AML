@@ -19,14 +19,17 @@ namespace InventoryService.Controllers
         
             
         [HttpPost]
-        [Route("AddBookStock")]
-        public async Task<IActionResult> AddBookStock([FromBody] BookStockUpdateDto bookStockUpdateDto)
+        [Route("UpdateStock")]
+        public async Task<IActionResult> AddBookStock([FromBody] List<StockUpdateDto> stockUpdateDto)
         {
-            
-            await _context.BookStockEntries.Where(e =>
-                e.MediaModelFormatConnection.Id == bookStockUpdateDto.BookFormatConnectionId).ExecuteUpdateAsync(
-                s => s.SetProperty(e => e.StockCount, 
-                    e => bookStockUpdateDto.StockCount));
+            foreach (var update in stockUpdateDto)
+            {
+                await _context.StockEntries.Where(e =>
+                    e.StockEntryId == update.StockEntryId).ExecuteUpdateAsync(
+                    s => s.SetProperty(e => e.StockCount, 
+                        e => update.StockCount));
+            }
+
 
             await _context.SaveChangesAsync();
             return Ok();

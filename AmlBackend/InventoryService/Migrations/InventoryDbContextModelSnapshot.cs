@@ -70,65 +70,24 @@ namespace InventoryService.Migrations
                     b.ToTable("BookAuthorConnections");
                 });
 
-            modelBuilder.Entity("InventoryService.Data.Models.MediaModelFormatConnection", b =>
+            modelBuilder.Entity("InventoryService.Data.Models.CDDVD.CdTrack", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("TrackId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("BookId")
+                    b.Property<int>("CdDvdId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("FormatId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("TrackName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
-                    b.HasKey("Id");
+                    b.HasKey("TrackId");
 
-                    b.HasIndex("BookId");
+                    b.HasIndex("CdDvdId");
 
-                    b.HasIndex("FormatId");
-
-                    b.ToTable("BookFormatConnections");
-                });
-
-            modelBuilder.Entity("InventoryService.Data.Models.MediaModelGenreConnection", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("BookId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("GenreId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BookId");
-
-                    b.HasIndex("GenreId");
-
-                    b.ToTable("BookGenreConnections");
-                });
-
-            modelBuilder.Entity("InventoryService.Data.Models.BookStockEntry", b =>
-                {
-                    b.Property<int>("BookStockEntryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("BookFormatConnectionId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("StockCount")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("BookStockEntryId");
-
-                    b.HasIndex("BookFormatConnectionId");
-
-                    b.ToTable("BookStockEntries");
+                    b.ToTable("CdTracks");
                 });
 
             modelBuilder.Entity("InventoryService.Data.Models.Format", b =>
@@ -256,7 +215,7 @@ namespace InventoryService.Migrations
 
                     b.Property<string>("Discriminator")
                         .IsRequired()
-                        .HasMaxLength(13)
+                        .HasMaxLength(21)
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime?>("PublishDate")
@@ -275,6 +234,48 @@ namespace InventoryService.Migrations
                     b.HasDiscriminator().HasValue("MediaModel");
 
                     b.UseTphMappingStrategy();
+                });
+
+            modelBuilder.Entity("InventoryService.Data.Models.MediaModelFormatConnection", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("FormatId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("MediaId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FormatId");
+
+                    b.HasIndex("MediaId");
+
+                    b.ToTable("MediaModelFormatConnections");
+                });
+
+            modelBuilder.Entity("InventoryService.Data.Models.MediaModelGenreConnection", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("GenreId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("MediaId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GenreId");
+
+                    b.HasIndex("MediaId");
+
+                    b.ToTable("MediaModelGenreConnections");
                 });
 
             modelBuilder.Entity("InventoryService.Data.Models.Publisher", b =>
@@ -309,6 +310,28 @@ namespace InventoryService.Migrations
                         });
                 });
 
+            modelBuilder.Entity("InventoryService.Data.Models.StockEntry", b =>
+                {
+                    b.Property<int>("StockEntryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("BranchId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("MediaModelFormatConnectionId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("StockCount")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("StockEntryId");
+
+                    b.HasIndex("MediaModelFormatConnectionId");
+
+                    b.ToTable("StockEntries");
+                });
+
             modelBuilder.Entity("InventoryService.Data.Models.Book", b =>
                 {
                     b.HasBaseType("InventoryService.Data.Models.Media.MediaModel");
@@ -320,6 +343,52 @@ namespace InventoryService.Migrations
                         .HasColumnType("INTEGER");
 
                     b.HasDiscriminator().HasValue("Book");
+                });
+
+            modelBuilder.Entity("InventoryService.Data.Models.CdDvd", b =>
+                {
+                    b.HasBaseType("InventoryService.Data.Models.Media.MediaModel");
+
+                    b.Property<int>("CdDvdId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasDiscriminator().HasValue("CdDvd");
+                });
+
+            modelBuilder.Entity("InventoryService.Data.Models.Journal", b =>
+                {
+                    b.HasBaseType("InventoryService.Data.Models.Media.MediaModel");
+
+                    b.Property<int>("JournalId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasDiscriminator().HasValue("Journal");
+                });
+
+            modelBuilder.Entity("InventoryService.Data.Models.MultiMediaGame", b =>
+                {
+                    b.HasBaseType("InventoryService.Data.Models.Media.MediaModel");
+
+                    b.HasDiscriminator().HasValue("MultiMediaGame");
+                });
+
+            modelBuilder.Entity("InventoryService.Data.Models.Periodical", b =>
+                {
+                    b.HasBaseType("InventoryService.Data.Models.Media.MediaModel");
+
+                    b.Property<int?>("PageCount")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("PeriodicalId")
+                        .HasColumnType("INTEGER");
+
+                    b.ToTable("MediaModels", t =>
+                        {
+                            t.Property("PageCount")
+                                .HasColumnName("Periodical_PageCount");
+                        });
+
+                    b.HasDiscriminator().HasValue("Periodical");
                 });
 
             modelBuilder.Entity("InventoryService.Data.Models.BookAuthorConnection", b =>
@@ -341,49 +410,60 @@ namespace InventoryService.Migrations
                     b.Navigation("Book");
                 });
 
-            modelBuilder.Entity("InventoryService.Data.Models.MediaModelFormatConnection", b =>
+            modelBuilder.Entity("InventoryService.Data.Models.CDDVD.CdTrack", b =>
                 {
-                    b.HasOne("InventoryService.Data.Models.Book", "Book")
+                    b.HasOne("InventoryService.Data.Models.CdDvd", "CdDvd")
                         .WithMany()
-                        .HasForeignKey("BookId")
+                        .HasForeignKey("CdDvdId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("CdDvd");
+                });
+
+            modelBuilder.Entity("InventoryService.Data.Models.MediaModelFormatConnection", b =>
+                {
                     b.HasOne("InventoryService.Data.Models.Format", "Format")
                         .WithMany()
                         .HasForeignKey("FormatId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Book");
+                    b.HasOne("InventoryService.Data.Models.Media.MediaModel", "Media")
+                        .WithMany()
+                        .HasForeignKey("MediaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Format");
+
+                    b.Navigation("Media");
                 });
 
             modelBuilder.Entity("InventoryService.Data.Models.MediaModelGenreConnection", b =>
                 {
-                    b.HasOne("InventoryService.Data.Models.Book", "Book")
-                        .WithMany()
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("InventoryService.Data.Models.Genre", "Genre")
                         .WithMany()
                         .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Book");
+                    b.HasOne("InventoryService.Data.Models.Media.MediaModel", "Media")
+                        .WithMany()
+                        .HasForeignKey("MediaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Genre");
+
+                    b.Navigation("Media");
                 });
 
-            modelBuilder.Entity("InventoryService.Data.Models.BookStockEntry", b =>
+            modelBuilder.Entity("InventoryService.Data.Models.StockEntry", b =>
                 {
                     b.HasOne("InventoryService.Data.Models.MediaModelFormatConnection", "MediaModelFormatConnection")
                         .WithMany()
-                        .HasForeignKey("BookFormatConnectionId")
+                        .HasForeignKey("MediaModelFormatConnectionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

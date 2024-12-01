@@ -13,6 +13,7 @@ builder.Services.AddDbContext<InventoryDbContext>(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<BookRepository>();
+builder.Services.AddScoped<MediaModelRepository>();
 
 var app = builder.Build();
 

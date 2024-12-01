@@ -21,5 +21,5 @@ public class NewBookSubmissionDto
     [Required]
     public int PageCount { get; set; }
     [Required]
-    public int SerialNumber { get; set; }
+    public long SerialNumber { get; set; }
 }

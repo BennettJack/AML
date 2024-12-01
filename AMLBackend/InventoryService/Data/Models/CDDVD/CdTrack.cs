@@ -1,5 +1,8 @@
-﻿namespace InventoryService.Data.Models.CDDVD;
+﻿using Microsoft.EntityFrameworkCore;
 
+namespace InventoryService.Data.Models.CDDVD;
+
+[PrimaryKey("TrackId")]
 public class CdTrack
 {
     public int TrackId { get; set; }

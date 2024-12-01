@@ -7,10 +7,10 @@ public class BookRepository(InventoryDbContext _context)
 {
     public async Task AddNewBook(Book book)
     {
-        _context.AddAsync(book);
-        _context.SaveChangesAsync();
+        await _context.AddAsync(book);
+        await _context.SaveChangesAsync();
     }
-    public async Task AddBookAuthorConnection(List<int> authors, int serialNumber)
+    public async Task AddBookAuthorConnection(List<int> authors, long serialNumber)
     {
         foreach (var authorId in authors)
         {

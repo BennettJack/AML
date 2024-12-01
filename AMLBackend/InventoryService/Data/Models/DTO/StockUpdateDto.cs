@@ -1,7 +1,7 @@
 ﻿namespace InventoryService.Data.Models.DTO;
 
-public class BookStockUpdateDto
+public class StockUpdateDto
 {
-    public int BookFormatConnectionId { get; set; }
+    public int StockEntryId { get; set; }
     public int StockCount { get; set; }
 }

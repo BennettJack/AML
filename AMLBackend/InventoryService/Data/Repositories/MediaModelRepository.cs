@@ -1,11 +1,12 @@
-﻿using InventoryService.Data.Models;
+﻿using InventoryService.Data.Branch;
+using InventoryService.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace InventoryService.Data.Repositories;
 
 public class MediaModelRepository(InventoryDbContext _context)
 {
-    public async Task AddMediaModelGenreConnection(List<int> genres, int serialNumber)
+    public async Task AddMediaModelGenreConnection(List<int> genres, long serialNumber)
     {
         foreach (var genreId in genres)
         {
@@ -20,7 +21,7 @@ public class MediaModelRepository(InventoryDbContext _context)
         }
     }
 
-    public async Task AddMediaModelFormatConnection(List<int> formats, int serialNumber)
+    public async Task AddMediaModelFormatConnection(List<int> formats, long serialNumber)
     {
         foreach (var formatId in formats)
         {
@@ -35,23 +36,28 @@ public class MediaModelRepository(InventoryDbContext _context)
         }
     }
 
-    public async Task SetInitialStock(int serialNumber)
+    public async Task SetInitialStock(long serialNumber)
     {
         var formatEntries =
             _context.MediaModelFormatConnections.Where(f => f.Media.SerialNumber == serialNumber).ToList();
-        
-        foreach (var formatEntry in formatEntries)
-        {
-            var stockEntry = new BookStockEntry
-            {
-                MediaModelFormatConnection = formatEntry,
-                StockCount = 0
-            };
 
-            await _context.AddAsync(stockEntry);
+        var client = new HttpClient();
+        var response = await client.GetAsync("https://localhost:7278/api/Branch/UpdateBook");
+        var branches = await response.Content.ReadFromJsonAsync<List<BranchDto>>();
+        foreach (var branch in branches)
+        {
+            foreach (var formatEntry in formatEntries)
+            {
+                var stockEntry = new StockEntry()
+                {
+                    MediaModelFormatConnection = formatEntry,
+                    StockCount = 0,
+                    BranchId = branch.BranchId
+                };
+
+                await _context.AddAsync(stockEntry);
+            }
         }
-        
-        
         await _context.SaveChangesAsync();
     }
 }

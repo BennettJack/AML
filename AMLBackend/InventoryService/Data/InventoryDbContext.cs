@@ -26,7 +26,7 @@ namespace InventoryService.Data
         public DbSet<MediaModelGenreConnection> MediaModelGenreConnections { get; set; }
         public DbSet<Format> Formats { get; set; }
         public DbSet<MediaModelFormatConnection> MediaModelFormatConnections { get; set; }
-        public DbSet<BookStockEntry> BookStockEntries { get; set; }
+        public DbSet<StockEntry> StockEntries { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
