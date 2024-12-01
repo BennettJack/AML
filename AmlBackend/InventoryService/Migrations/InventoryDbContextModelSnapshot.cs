@@ -70,7 +70,7 @@ namespace InventoryService.Migrations
                     b.ToTable("BookAuthorConnections");
                 });
 
-            modelBuilder.Entity("InventoryService.Data.Models.BookFormatConnection", b =>
+            modelBuilder.Entity("InventoryService.Data.Models.MediaModelFormatConnection", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -91,7 +91,7 @@ namespace InventoryService.Migrations
                     b.ToTable("BookFormatConnections");
                 });
 
-            modelBuilder.Entity("InventoryService.Data.Models.BookGenreConnection", b =>
+            modelBuilder.Entity("InventoryService.Data.Models.MediaModelGenreConnection", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -341,7 +341,7 @@ namespace InventoryService.Migrations
                     b.Navigation("Book");
                 });
 
-            modelBuilder.Entity("InventoryService.Data.Models.BookFormatConnection", b =>
+            modelBuilder.Entity("InventoryService.Data.Models.MediaModelFormatConnection", b =>
                 {
                     b.HasOne("InventoryService.Data.Models.Book", "Book")
                         .WithMany()
@@ -360,7 +360,7 @@ namespace InventoryService.Migrations
                     b.Navigation("Format");
                 });
 
-            modelBuilder.Entity("InventoryService.Data.Models.BookGenreConnection", b =>
+            modelBuilder.Entity("InventoryService.Data.Models.MediaModelGenreConnection", b =>
                 {
                     b.HasOne("InventoryService.Data.Models.Book", "Book")
                         .WithMany()
@@ -381,13 +381,13 @@ namespace InventoryService.Migrations
 
             modelBuilder.Entity("InventoryService.Data.Models.BookStockEntry", b =>
                 {
-                    b.HasOne("InventoryService.Data.Models.BookFormatConnection", "BookFormatConnection")
+                    b.HasOne("InventoryService.Data.Models.MediaModelFormatConnection", "MediaModelFormatConnection")
                         .WithMany()
                         .HasForeignKey("BookFormatConnectionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("BookFormatConnection");
+                    b.Navigation("MediaModelFormatConnection");
                 });
 #pragma warning restore 612, 618
         }

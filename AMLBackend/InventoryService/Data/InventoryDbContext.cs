@@ -23,9 +23,9 @@ namespace InventoryService.Data
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<BookAuthorConnection>  BookAuthorConnections { get; set; }
-        public DbSet<BookGenreConnection> BookGenreConnections { get; set; }
+        public DbSet<MediaModelGenreConnection> MediaModelGenreConnections { get; set; }
         public DbSet<Format> Formats { get; set; }
-        public DbSet<BookFormatConnection> BookFormatConnections { get; set; }
+        public DbSet<MediaModelFormatConnection> MediaModelFormatConnections { get; set; }
         public DbSet<BookStockEntry> BookStockEntries { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

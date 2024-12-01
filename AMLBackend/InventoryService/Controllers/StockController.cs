@@ -24,7 +24,7 @@ namespace InventoryService.Controllers
         {
             
             await _context.BookStockEntries.Where(e =>
-                e.BookFormatConnection.Id == bookStockUpdateDto.BookFormatConnectionId).ExecuteUpdateAsync(
+                e.MediaModelFormatConnection.Id == bookStockUpdateDto.BookFormatConnectionId).ExecuteUpdateAsync(
                 s => s.SetProperty(e => e.StockCount, 
                     e => bookStockUpdateDto.StockCount));
 

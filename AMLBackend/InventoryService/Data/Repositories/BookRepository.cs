@@ -5,17 +5,22 @@ namespace InventoryService.Data.Repositories;
 
 public class BookRepository(InventoryDbContext _context)
 {
-    public async Task AddBookGenreConnection(List<int> genres, int serialNumber)
+    public async Task AddNewBook(Book book)
     {
-        foreach (var genreId in genres)
+        _context.AddAsync(book);
+        _context.SaveChangesAsync();
+    }
+    public async Task AddBookAuthorConnection(List<int> authors, int serialNumber)
+    {
+        foreach (var authorId in authors)
         {
-            var bookGenreConnection = new BookGenreConnection
+            var bookAuthorConnection = new BookAuthorConnection()
             {
                 Book = await _context.Books.FirstOrDefaultAsync(b => b.SerialNumber == serialNumber),
-                Genre = await _context.Genres.FirstOrDefaultAsync(g => g.GenreId == genreId)
+                Author = await _context.Authors.FirstOrDefaultAsync(g => g.AuthorId == authorId)
             };
                 
-            await _context.AddAsync(bookGenreConnection);
+            await _context.AddAsync(bookAuthorConnection);
             await _context.SaveChangesAsync();
         }
     }
