@@ -6,3 +6,6 @@
 /AMLBackend/Branch Information/obj
 /AMLBackend/InventoryService/.vs
 /AMLBackend/InventoryService/obj
+/AmlBackend/ApiGateway/bin
+/AmlBackend/BranchService/bin
+/AmlBackend/InventoryService/bin
