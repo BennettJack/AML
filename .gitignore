@@ -20,3 +20,6 @@
 /AMLBackend/InventoryService/obj
 /AmlBackend/InventoryService/obj
 /AmlBackend/InventoryService/bin
+/AmlBackend/ApiGateway/.idea
+/AmlBackend/ApiGateway/bin
+/AmlBackend/ApiGateway/obj
