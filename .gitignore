@@ -23,3 +23,6 @@
 /AmlBackend/ApiGateway/.idea
 /AmlBackend/ApiGateway/bin
 /AmlBackend/ApiGateway/obj
+/AmlBackend/UserService/bin
+/AmlBackend/UserService/obj
+/AmlBackend/UserService/.idea
