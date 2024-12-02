@@ -1,11 +1,40 @@
 import '../CSS/MediaSearch.css';
 import lotrBookSmall from './images/lotrBookSmall.jpg';
 
+const formToJSON = (elements) =>
+[].reduce.call(
+    elements,
+    (data, element) => {
+        data[element.name] = element.value;
+        return data;
+    },
+    {}
+);
+
+const handleFormSubmit = (event) => {
+    event.preventDefault();
+
+    const data = formToJSON(form.elements);
+
+    const dataContainer = document.getElementsByClassName('results_display')[0];
+
+    dataContainer.textContent = JSON.stringify(data, null, ' ');
+}
+
+const reducerFuntion = (data, element) => {
+    data[element.name] = element.value;
+    console.Log(JSON.stringify(data));
+    return data;
+};
+
+const form = document.getElementsByClassName('searchAndFilter')[0];
+form.addEventListener('submit', handleFormSubmit);
+
 const MediaSearch = () => {
     return (
         <>
             <div className="searchAndFilter"> 
-                <form>
+                <form id="searchForm">
                     <div className="search">
                         <p>Search the catalogue: </p>
                         <label for="search" id="search" name="search"></label>
@@ -71,6 +100,11 @@ const MediaSearch = () => {
                         </article>
                     </section>
                 </div>
+            </div>
+
+            <div class="results">
+            <h2 class="results__heading">Form Data</h2>
+            
             </div>
         </>
     )

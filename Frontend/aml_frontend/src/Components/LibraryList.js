@@ -1,11 +1,8 @@
-import Header from '../Components/Header.js';
-import Footer from '../Components/Footer';
 import '../CSS/LibraryList.css';
 
 const LibraryList = () => {
     return (
         <>
-            <Header />
             <div className ="List">
             <h2>Find Your Local Library: </h2>
                 <ul>
@@ -23,7 +20,6 @@ const LibraryList = () => {
                     <li>York Library</li>
                 </ul>
             </div>
-            <Footer />
         </>
     )
 }
