@@ -10,6 +10,7 @@ public class BranchDbContext :DbContext
     }
     
     public DbSet<Branch> Branches { get; set; }
+    public DbSet<BranchUserConnection> BranchUserConnections { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

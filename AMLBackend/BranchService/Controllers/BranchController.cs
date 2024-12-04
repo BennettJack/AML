@@ -1,4 +1,6 @@
 ﻿using BranchService.Data;
+using BranchService.Data.Models.Branch;
+using BranchService.Data.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,5 +25,18 @@ public class BranchController : ControllerBase
         return Ok(branches);
     }
 
-    
+    [HttpPost]
+    [Route("AssignUserToBranch")]
+    public async Task<IActionResult> AssignUserToBranch([FromBody] NewUserBranchConnectionDto newUserBranchConnection)
+    {
+        var connection = new BranchUserConnection
+        {
+            Branch = await _context.Branches.FirstOrDefaultAsync(branch =>
+                branch.BranchId == newUserBranchConnection.BranchId),
+            UserId = newUserBranchConnection.UserId
+        };
+        await _context.BranchUserConnections.AddAsync(connection);
+        await _context.SaveChangesAsync();
+        return Ok();
+    }
 }

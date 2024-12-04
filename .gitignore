@@ -26,3 +26,6 @@
 /AmlBackend/UserService/bin
 /AmlBackend/UserService/obj
 /AmlBackend/UserService/.idea
+/AmlBackend/BranchService/.idea
+/Frontend/.idea
+/AmlBackend/InventoryService/obj

@@ -1,16 +1,23 @@
-import {React, useState} from "react";
+import {React, useEffect, useState} from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import "../CSS/Register.css";
 import axios from "axios";
 
 const Register = () => {
+    const [branches, setBranches] = useState([])
+    
+    useEffect(() => {
+        axios.get("https://localhost:7095/BranchService/api/Branch/GetBranches").then(res => 
+             setBranches(res.data)).catch((e) => console.log("oops"))
+    },[])
     
     const [formData , setFormData] = useState({
         name: '',
         username: '',
         email: '',
-        password: ''
+        password: '',
+        branchId: ''
     });
     
     const handleChange = (e) => {
@@ -23,10 +30,9 @@ const Register = () => {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        let test = formData;
-        axios.post("https://localhost:7095/UserService/api/UserAccount/RegisterNewUser", {test})
+        axios.post("https://localhost:7095/UserService/api/UserAccount/RegisterNewUser", formData)
             .then(res => console.log(res))
-        console.log('Form Data Submitted:', formData);
+            .catch((e) => console.log(e.message))
     };
     
     return (
@@ -64,17 +70,23 @@ const Register = () => {
                     </label>
                     <label>
                         Location:
-                        <input 
-                            type="text" 
-                            name="location"
-/*                            value={formData.name}
-                            onChange={handleChange}*/
-                        />
+                        <select
+                            name="branchId"
+                            value={formData.branchId}
+                            onChange={handleChange}
+                        >
+                            <option value={""} defaultValue={"true"}>Please Select</option>
+                            {branches.map(function (branch) {
+                                return (
+                                    <option value={branch.branchId}>{branch.branchLocation}</option>
+                                )
+                            })}
+                        </select>
                     </label>
                     <label>
                         Password:
-                        <input 
-                            type="password" 
+                        <input
+                            type="password"
                             name="password"
                             value={formData.password}
                             onChange={handleChange}

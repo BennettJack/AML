@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BrowsingService")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2f1c4544487e8a5dce0059b3c4804553de450b0b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f363e2be063b671d5800691a102a8c0542b8a3c4")]
 [assembly: System.Reflection.AssemblyProductAttribute("BrowsingService")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BrowsingService")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
