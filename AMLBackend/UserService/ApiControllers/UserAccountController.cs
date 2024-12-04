@@ -18,8 +18,7 @@ public class UserAccountController : ControllerBase
         _context = context;
         _userManager = userManager;
     }
-
-
+    
     [HttpPost]
     [Route("RegisterNewUser")]
     public async Task<IActionResult> RegisterNewUser([FromBody] NewMemberDto newMemberRequest)

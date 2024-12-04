@@ -12,6 +12,7 @@ function NewBookSubmissionForm() {
         axios.get("https://localhost:7254/api/Attributes/GetPublishersList").then(res => setPublishers(res.data)).catch((e) => console.log("oops"))
         axios.get("https://localhost:7254/api/Attributes/GetFormatsList").then(res => setFormats(res.data)).catch((e) => console.log("oops"))
     },[])
+    
     useEffect(() => {
         console.log(genres)
         console.log(authors)
