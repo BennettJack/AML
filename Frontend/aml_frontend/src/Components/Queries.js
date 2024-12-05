@@ -9,6 +9,7 @@ const Queries = () => {
                     <button type="button">Query</button>
                     <button type="button">Query</button>
                     <button type="button">Query</button>
+                    <button type="button">Query</button>
                 </form>
             </div>
             <div className = "QueryView">
@@ -20,6 +21,7 @@ const Queries = () => {
                     <textarea name="QueryResponse" rows="10" cols="30">Type Query Response Here...</textarea>
                     <div>
                         <button type="submit">Confirm</button>
+                        <button>Close Query</button>
                     </div>
                 </form>
             </div>

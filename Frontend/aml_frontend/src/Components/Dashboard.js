@@ -8,7 +8,7 @@ const Dashboard = () => {
             <div className ="buttonsContainer">
                 <form>
                     <button type="button">Branch Information</button>
-                    <Link to="/Queries" className="button">Member Queries</Link>
+                    <Link to="/BranchQueries" className="button">Member Queries</Link>
                     <button type="button">Branch Members</button>
                     <button type="button">Media Usage</button>
                     <button type="button">Media Transfers</button>
