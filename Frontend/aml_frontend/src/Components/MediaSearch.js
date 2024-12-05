@@ -1,7 +1,9 @@
 import '../CSS/MediaSearch.css';
 import lotrBookSmall from './images/lotrBookSmall.jpg';
+import { useForm } from "react-hook-form";
+import { useState } from "react";
 
-const formToJSON = (elements) =>
+/*const formToJSON = (elements) =>
 [].reduce.call(
     elements,
     (data, element) => {
@@ -13,11 +15,8 @@ const formToJSON = (elements) =>
 
 const handleFormSubmit = (event) => {
     event.preventDefault();
-
     const data = formToJSON(form.elements);
-
     const dataContainer = document.getElementsByClassName('results_display')[0];
-
     dataContainer.textContent = JSON.stringify(data, null, ' ');
 }
 
@@ -28,30 +27,35 @@ const reducerFuntion = (data, element) => {
 };
 
 const form = document.getElementsByClassName('searchAndFilter')[0];
-form.addEventListener('submit', handleFormSubmit);
+form.addEventListener('submit', handleFormSubmit);*/
 
 const MediaSearch = () => {
+    const {register, handleSubmit} = useForm();
+    const [data, setData] = useState("");
+    //const onSubmit = (data) =>
+        //alert(JSON.stringify(data));
+
     return (
         <>
             <div className="searchAndFilter"> 
-                <form id="searchForm">
+                <form onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))} id="searchForm">
                     <div className="search">
                         <p>Search the catalogue: </p>
                         <label for="search" id="search" name="search"></label>
-                        <input type="text" id="search" name="search"></input>
+                        <input {...register("search")} type="text" id="search" name="search"></input>
                     </div>
                     <div className="filter">
                         <p>Filter by: </p>
                         <div className="filters">
-                            <input type="radio" id="books" name="mediaFilter" value="books"></input>
+                            <input {...register("books")} type="radio" id="books" name="mediaFilter" value="books"></input>
                             <label for="books">books</label><br></br>
-                            <input type="radio" id="journals" name="mediaFilter" value="journals"></input>
+                            <input {...register("journals")} type="radio" id="journals" name="mediaFilter" value="journals"></input>
                             <label for="journals">journals</label><br></br>
-                            <input type="radio" id="periodicals" name="mediaFilter" value="periodicals"></input>
+                            <input {...register("periodicals")} type="radio" id="periodicals" name="mediaFilter" value="periodicals"></input>
                             <label for="periodicals">periodicals</label><br></br>
-                            <input type="radio" id="disks" name="mediaFilter" value="disks"></input>
+                            <input {...register("disks")} type="radio" id="disks" name="mediaFilter" value="disks"></input>
                             <label for="disks">CD/DVDs</label><br></br>
-                            <input type="radio" id="games" name="mediaFilter" value="games"></input>
+                            <input {...register("games")} type="radio" id="games" name="mediaFilter" value="games"></input>
                             <label for="games">Multimedia Games</label><br></br>
                             <input type="submit" value="Search"></input>
                         </div>

@@ -1,12 +1,12 @@
 import Header from '../Components/Header.js';
-import LibraryList from '../Components/LibraryList.js';
+import Branches from '../Components/Branches.js';
 
 const LibraryList = () => {
     return (
-        <>
+        <div>
             <Header />
-            <LibraryList />
-        </>
+            <Branches />
+        </div>
     )
 }
 export default LibraryList;

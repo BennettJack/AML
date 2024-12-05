@@ -1,3 +1,13 @@
 .List {
     
 }
+ul {
+    margin: 5% 25%;
+}
+.List ul li {
+
+    padding-bottom: 5%;
+    background: #939599;
+    color:rgb(255, 255, 255);
+    list-style-type:none;
+}

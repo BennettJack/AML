@@ -1,6 +1,6 @@
 import '../CSS/LibraryList.css';
 
-const LibraryList = () => {
+const Branches = () => {
     return (
         <>
             <div className ="List">
@@ -23,4 +23,4 @@ const LibraryList = () => {
         </>
     )
 }
-export default LibraryList;
+export default Branches;
