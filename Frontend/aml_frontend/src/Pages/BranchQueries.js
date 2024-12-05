@@ -1,15 +1,15 @@
 import Header from '../Components/Header.js';
-import Dashboard from '../Components/Dashboard.js';
+import Queries from '../Components/Queries.js';
 import Footer from '../Components/Footer.js';
 
-const BranchDashboard = () => {
+const BranchQueries = () => {
     return (
         <div>
             <Header />
-            <h1>Branch Dashboard</h1>
-            <Dashboard />
+            <h1>Branch Queries</h1>
+            <Queries />
             <Footer />
         </div>
     )
 }
-export default BranchDashboard;
+export default BranchQueries;

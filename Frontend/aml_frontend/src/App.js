@@ -8,12 +8,14 @@ import {
   NavLink,
 } from "react-router-dom";
 import Home from './Pages/Home.js';
-import LibraryList from './Components/LibraryList.js';
+import LibraryList from './Pages/LibraryList.js';
 import MemberProfile from "./Components/MemberProfile";
 import Browse from './Pages/Browse.js';
 import MediaResult from './Pages/MediaResult.js';
 import Register from "./Components/Register";
 import Login from "./Components/Login";
+import BranchDashboard from "./Pages/BranchDashboard";
+import BranchQueries from "./Pages/BranchQueries";
 
 function App() {
   return (
@@ -28,6 +30,8 @@ function App() {
           <Route path={"/MemberProfile"} element={<MemberProfile/>} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path={"/BranchDashboard"} element={<BranchDashboard/>} />
+          <Route path={"/BranchQueries"} element={<BranchQueries/>} />
         </Routes>
       </BrowserRouter>
     </div>
