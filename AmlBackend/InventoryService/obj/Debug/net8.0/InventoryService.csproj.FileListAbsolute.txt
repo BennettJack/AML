@@ -132,3 +132,6 @@ H:\Projects\AML\AmlBackend\InventoryService\obj\Debug\net8.0\InventoryService.pd
 H:\Projects\AML\AmlBackend\InventoryService\obj\Debug\net8.0\InventoryService.genruntimeconfig.cache
 H:\Projects\AML\AmlBackend\InventoryService\obj\Debug\net8.0\ref\InventoryService.dll
 H:\Projects\AML\AmlBackend\InventoryService\bin\Debug\net8.0\appsettings.Development.json
+H:\Projects\AML\AmlBackend\InventoryService\bin\Debug\net8.0\InventoryService.staticwebassets.endpoints.json
+H:\Projects\AML\AmlBackend\InventoryService\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+H:\Projects\AML\AmlBackend\InventoryService\obj\Debug\net8.0\staticwebassets\msbuild.InventoryService.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
