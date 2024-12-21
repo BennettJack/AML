@@ -1,5 +1,6 @@
 ﻿import {React, useEffect, useState} from "react";
 import axios from "axios";
+import MultiSelect from 'multiselect-react-dropdown';
 
 function NewBookSubmissionForm() {
     const [genres, setGenres] = useState([])
@@ -20,6 +21,7 @@ function NewBookSubmissionForm() {
         console.log(formats)
     },[genres])
     
+
     const [formData, setFormData] = useState({
         title: '',
         description: '',
@@ -31,7 +33,11 @@ function NewBookSubmissionForm() {
         pageCount: '',
         serial: '',
     });
-
+    
+    useEffect(() => {
+        console.log(formData.genres)
+    }, [formData.genres])
+    
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
 
@@ -127,6 +133,11 @@ function NewBookSubmissionForm() {
                         )
                     })}
                 </select>
+            </div>
+            
+            <div>
+                <MultiSelect value={"test"} onChange={(e) => formData.genres(e.value)} options={genres} optionLabel="name"
+                             placeholder="Select Genres" maxSelectedLabels={3} className="w-full md:w-20rem" />
             </div>
 
             <div>

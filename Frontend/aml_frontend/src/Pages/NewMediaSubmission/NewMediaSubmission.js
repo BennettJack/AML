@@ -7,7 +7,7 @@ import axios from "axios";
 
 const NewMediaSubmission = () => {
     const [selectedMediaType, setSelectedMediaType] = useState("")
-    const mediaTypes = useRef([
+    const [mediaTypes, setMediaTypes] = useState([
         "book",
         "motionPicture",
         "cdDvd",
@@ -17,31 +17,65 @@ const NewMediaSubmission = () => {
     ])
     
     useEffect(() => {
-        console.log(selectedMediaType)
+        //console.log(selectedMediaType)
     }, [selectedMediaType])
     
     const handleMediaTypeChange = (e) => {
         setSelectedMediaType(e.target.value)
     }
+    
+    const renderForm = () => {
+        console.log("test")
+        switch (selectedMediaType) {
+            case "book":
+                return (
+                    <NewBookSubmissionForm />
+                )
+            case "motionPicture":
+                return(
+                    <p>Motion Picture</p>
+                )
+            case "cdDvd":
+                return(
+                    <p>Cd Dvd</p>
+                )
+            case "journal":
+                return(
+                    <p>Journal</p>
+                )
+            case "periodical":
+                return (
+                    <p>Periodical</p>
+                )
+            case "multiMediaGame":
+                return (
+                    <p>Multimedia game</p>
+                )
+            default:
+                return (
+                    <p>Please select a media type</p>
+                )
+        }
+    }
+    
     return (
         <div>
             <Header />
             <h1>Add Media</h1>
             <div>
                 <label>Media Type</label>
-                <select
-                    onChange={handleMediaTypeChange}
-                >
-                    <option 
-                        value={""} 
-                        selected={true}
-                    >
+                <select onChange={handleMediaTypeChange}>
+                    <option value={""} selected={true}>
                         Please select media type</option>
-                    <option value={"book"}>Book</option>
-                    <option value={"motionPicture"}>Motion Picture</option>
+                    {mediaTypes.map(function(mediaType){
+                        return(
+                            <option value={mediaType}>{mediaType}</option>
+                        )
+                    })}
                 </select>
             </div>
-            <NewBookSubmissionForm />
+            {renderForm()}
+            
             <Footer />
         </div>
     )
