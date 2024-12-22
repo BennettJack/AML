@@ -1,0 +1,12 @@
+﻿#MediaCardWrapper{
+    padding: 10px;
+    border: 1px solid black;
+    margin-top: 10px;
+    display: grid;
+    
+}
+
+#MediaGrid{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}

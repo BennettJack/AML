@@ -6,6 +6,7 @@ import {
   Routes,
   Route,
   NavLink,
+    useParams
 } from "react-router-dom";
 import Home from './Pages/Home.js';
 import LibraryList from './Components/LibraryList.js';
@@ -15,6 +16,8 @@ import MediaResult from './Pages/MediaResult.js';
 import Register from "./Components/Register";
 import Login from "./Components/Login";
 import NewMediaSubmission from "./Pages/NewMediaSubmission/NewMediaSubmission";
+import StockControlMainPage from "./Pages/StockControl/StockControlMainPage";
+import StockControlMediaView from "./Pages/StockControl/StockControlMediaView";
 
 function App() {
   return (
@@ -30,6 +33,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path={"/NewMediaSubmission"} element={<NewMediaSubmission/>} />
+          <Route path={"/StockControl"} element={<StockControlMainPage/>} />
+          <Route path={"/StockControlMediaView/:id"} element={<StockControlMediaView/>} />
         </Routes>
       </BrowserRouter>
     </div>

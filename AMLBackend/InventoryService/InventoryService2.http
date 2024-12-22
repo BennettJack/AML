@@ -1,6 +1,0 @@
-@InventoryService2_HostAddress = http://localhost:5064
-
-GET {{InventoryService2_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

@@ -218,11 +218,17 @@ namespace InventoryService.Migrations
                         .HasMaxLength(21)
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("FullImageUrl")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime?>("PublishDate")
                         .HasColumnType("TEXT");
 
                     b.Property<long?>("SerialNumber")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("ThumbnailImageUrl")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
                         .HasColumnType("TEXT");

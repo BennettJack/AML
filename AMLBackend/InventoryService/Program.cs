@@ -1,7 +1,9 @@
 
 using InventoryService.Data;
 using InventoryService.Data.Repositories;
+using InventoryService.Data.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +17,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<BookRepository>();
 builder.Services.AddScoped<MediaModelRepository>();
+
+builder.Services.AddScoped<MediaModelService>();
 
 
 var app = builder.Build();
@@ -38,4 +42,11 @@ app.UseCors(x => x
     .AllowCredentials()
     .SetIsOriginAllowed(origin => true));
 
+app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(builder.Environment.ContentRootPath, "Data/Images/MediaImages")),
+    RequestPath = "/Images"
+});
+app.MapDefaultControllerRoute();
 app.Run();

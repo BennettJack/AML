@@ -1,10 +1,12 @@
 ﻿using InventoryService.Data.Branch;
 using InventoryService.Data.Models;
+using InventoryService.Data.Models.Media;
+using InventoryService.Data.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace InventoryService.Data.Repositories;
 
-public class MediaModelRepository(InventoryDbContext _context)
+public class MediaModelRepository(InventoryDbContext _context) : IMediaModelRepository
 {
     public async Task AddMediaModelGenreConnection(List<int> genres, long serialNumber)
     {
@@ -59,5 +61,10 @@ public class MediaModelRepository(InventoryDbContext _context)
             }
         }
         await _context.SaveChangesAsync();
+    }
+
+    public async Task<List<MediaModel>> GetAllMediaItems()
+    {
+        return await _context.MediaModels.ToListAsync();
     }
 }
