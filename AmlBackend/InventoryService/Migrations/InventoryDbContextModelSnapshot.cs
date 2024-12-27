@@ -70,6 +70,63 @@ namespace InventoryService.Migrations
                     b.ToTable("BookAuthorConnections");
                 });
 
+            modelBuilder.Entity("InventoryService.Data.Models.BorrowRecord", b =>
+                {
+                    b.Property<int>("BorrowRecordId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("BorrowDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("BranchId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("MediaModelFormatConnectionId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("ReturnDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("BorrowRecordId");
+
+                    b.HasIndex("MediaModelFormatConnectionId");
+
+                    b.ToTable("BorrowRecords");
+                });
+
+            modelBuilder.Entity("InventoryService.Data.Models.BranchStockRecord", b =>
+                {
+                    b.Property<int>("BranchStockRecordId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("BorrowedCount")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("BranchId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("MediaModelFormatConnectionId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ReservedCount")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("StockCount")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("BranchStockRecordId");
+
+                    b.HasIndex("MediaModelFormatConnectionId");
+
+                    b.ToTable("BranchStockRecords");
+                });
+
             modelBuilder.Entity("InventoryService.Data.Models.CDDVD.CdTrack", b =>
                 {
                     b.Property<int>("TrackId")
@@ -316,13 +373,36 @@ namespace InventoryService.Migrations
                         });
                 });
 
-            modelBuilder.Entity("InventoryService.Data.Models.StockEntry", b =>
+            modelBuilder.Entity("InventoryService.Data.Models.ReserveRecord", b =>
                 {
-                    b.Property<int>("StockEntryId")
+                    b.Property<int>("ReserveRecordId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("BranchId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("MediaModelFormatConnectionId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("ReservationDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ReserveRecordId");
+
+                    b.HasIndex("MediaModelFormatConnectionId");
+
+                    b.ToTable("ReserveRecords");
+                });
+
+            modelBuilder.Entity("InventoryService.Data.Models.StockEntry", b =>
+                {
+                    b.Property<int>("StockEntryId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("MediaModelFormatConnectionId")
@@ -349,6 +429,63 @@ namespace InventoryService.Migrations
                         .HasColumnType("INTEGER");
 
                     b.HasDiscriminator().HasValue("Book");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "BOOK 1 DESCRIPTION",
+                            FullImageUrl = "Book1PlaceholderImage.png",
+                            PublishDate = new DateTime(1992, 12, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SerialNumber = 4892109905L,
+                            Title = "Book 1",
+                            BookId = 0,
+                            PageCount = 300
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "BOOK 2 DESCRIPTION",
+                            FullImageUrl = "Book2PlaceholderImage.png",
+                            PublishDate = new DateTime(1992, 12, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SerialNumber = 4892109906L,
+                            Title = "Book 2",
+                            BookId = 0,
+                            PageCount = 410
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "BOOK 3 DESCRIPTION",
+                            FullImageUrl = "Book3PlaceholderImage.png",
+                            PublishDate = new DateTime(1992, 12, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SerialNumber = 4892109907L,
+                            Title = "Book 3",
+                            BookId = 0,
+                            PageCount = 89
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "BOOK 4 DESCRIPTION",
+                            FullImageUrl = "Book4PlaceholderImage.png",
+                            PublishDate = new DateTime(1992, 12, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SerialNumber = 4892109908L,
+                            Title = "Book 4",
+                            BookId = 0,
+                            PageCount = 280
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "BOOK 5 DESCRIPTION",
+                            FullImageUrl = "Book5PlaceholderImage.png",
+                            PublishDate = new DateTime(1992, 12, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SerialNumber = 4892109909L,
+                            Title = "Book 5",
+                            BookId = 0,
+                            PageCount = 390
+                        });
                 });
 
             modelBuilder.Entity("InventoryService.Data.Models.CdDvd", b =>
@@ -416,6 +553,28 @@ namespace InventoryService.Migrations
                     b.Navigation("Book");
                 });
 
+            modelBuilder.Entity("InventoryService.Data.Models.BorrowRecord", b =>
+                {
+                    b.HasOne("InventoryService.Data.Models.MediaModelFormatConnection", "MediaModelFormatConnection")
+                        .WithMany()
+                        .HasForeignKey("MediaModelFormatConnectionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("MediaModelFormatConnection");
+                });
+
+            modelBuilder.Entity("InventoryService.Data.Models.BranchStockRecord", b =>
+                {
+                    b.HasOne("InventoryService.Data.Models.MediaModelFormatConnection", "MediaModelFormatConnection")
+                        .WithMany()
+                        .HasForeignKey("MediaModelFormatConnectionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("MediaModelFormatConnection");
+                });
+
             modelBuilder.Entity("InventoryService.Data.Models.CDDVD.CdTrack", b =>
                 {
                     b.HasOne("InventoryService.Data.Models.CdDvd", "CdDvd")
@@ -463,6 +622,17 @@ namespace InventoryService.Migrations
                     b.Navigation("Genre");
 
                     b.Navigation("Media");
+                });
+
+            modelBuilder.Entity("InventoryService.Data.Models.ReserveRecord", b =>
+                {
+                    b.HasOne("InventoryService.Data.Models.MediaModelFormatConnection", "MediaModelFormatConnection")
+                        .WithMany()
+                        .HasForeignKey("MediaModelFormatConnectionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("MediaModelFormatConnection");
                 });
 
             modelBuilder.Entity("InventoryService.Data.Models.StockEntry", b =>

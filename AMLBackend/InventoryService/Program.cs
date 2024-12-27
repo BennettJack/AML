@@ -17,9 +17,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<BookRepository>();
 builder.Services.AddScoped<MediaModelRepository>();
-
+builder.Services.AddScoped<AttributeRepository>();
 builder.Services.AddScoped<MediaModelService>();
-
+builder.Services.AddScoped<StockRepository>();
+builder.Services.AddScoped<StockService>();
+builder.Services.AddScoped<ComplexDataSeeder>();
 
 var app = builder.Build();
 
@@ -49,4 +51,13 @@ app.UseStaticFiles(new StaticFileOptions{
     RequestPath = "/Images"
 });
 app.MapDefaultControllerRoute();
+
+using (var serviceScope = app.Services.CreateScope())
+{
+    var services = serviceScope.ServiceProvider;
+
+    var dataSeeder = services.GetRequiredService<ComplexDataSeeder>();
+    dataSeeder.SeedData();
+}
+
 app.Run();

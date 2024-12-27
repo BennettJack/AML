@@ -11,18 +11,28 @@ namespace BranchService.Controllers;
 public class BranchController : ControllerBase
 {
     private readonly BranchDbContext _context;
+    private readonly Data.Services.BranchService _branchService;
 
-    public BranchController(BranchDbContext branchDbContext)
+    public BranchController(BranchDbContext branchDbContext, Data.Services.BranchService branchService)
     {
         _context = branchDbContext;
+        _branchService = branchService;
     }
     
     [HttpGet]
-    [Route("GetBranches")]
-    public async Task<IActionResult> GetBranches()
+    [Route("GetAllBranches")]
+    public async Task<IActionResult> GetAllBranches()
     {
-        var branches = await _context.Branches.ToListAsync();
+        var branches = _branchService.GetAllBranches().Result;
         return Ok(branches);
+    }
+    
+    [HttpGet]
+    [Route("GetBranchById")]
+    public async Task<IActionResult> GetBranches([FromBody] int branchId)
+    {
+        var branch = _branchService.GetBranchById(branchId);
+        return Ok(branch);
     }
 
     [HttpPost]

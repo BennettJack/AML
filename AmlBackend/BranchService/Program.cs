@@ -1,5 +1,7 @@
 using BranchService.Data;
+using BranchService.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
+using BranchService.Data.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,8 @@ builder.Services.AddDbContext<BranchDbContext>(options =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<BranchRepository>();
+builder.Services.AddScoped<BranchService.Data.Services.BranchService>();
 
 var app = builder.Build();
 
