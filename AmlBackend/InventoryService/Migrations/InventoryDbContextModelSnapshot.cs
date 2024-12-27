@@ -422,9 +422,6 @@ namespace InventoryService.Migrations
                 {
                     b.HasBaseType("InventoryService.Data.Models.Media.MediaModel");
 
-                    b.Property<int>("BookId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int?>("PageCount")
                         .HasColumnType("INTEGER");
 
@@ -439,7 +436,6 @@ namespace InventoryService.Migrations
                             PublishDate = new DateTime(1992, 12, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SerialNumber = 4892109905L,
                             Title = "Book 1",
-                            BookId = 0,
                             PageCount = 300
                         },
                         new
@@ -450,7 +446,6 @@ namespace InventoryService.Migrations
                             PublishDate = new DateTime(1992, 12, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SerialNumber = 4892109906L,
                             Title = "Book 2",
-                            BookId = 0,
                             PageCount = 410
                         },
                         new
@@ -461,7 +456,6 @@ namespace InventoryService.Migrations
                             PublishDate = new DateTime(1992, 12, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SerialNumber = 4892109907L,
                             Title = "Book 3",
-                            BookId = 0,
                             PageCount = 89
                         },
                         new
@@ -472,7 +466,6 @@ namespace InventoryService.Migrations
                             PublishDate = new DateTime(1992, 12, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SerialNumber = 4892109908L,
                             Title = "Book 4",
-                            BookId = 0,
                             PageCount = 280
                         },
                         new
@@ -483,7 +476,6 @@ namespace InventoryService.Migrations
                             PublishDate = new DateTime(1992, 12, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SerialNumber = 4892109909L,
                             Title = "Book 5",
-                            BookId = 0,
                             PageCount = 390
                         });
                 });

@@ -9,7 +9,7 @@ const StockControlMediaCard = ({mediaItem}) => {
     let navigate = useNavigate()
     const stockControlMediaViewBaseUrl = "StockControlMediaView/"
     return (
-        <div id={"mediaCardWrapper"} onClick={() => navigate((stockControlMediaViewBaseUrl + mediaItem.id))}>
+        <div id={"mediaCardWrapper"} onClick={() => navigate((stockControlMediaViewBaseUrl + mediaItem.mediaModelId))}>
             <img src={"https://localhost:7254/Images/FullImage/" + mediaItem.fullImageUrl}
                  alt={"image of " + mediaItem.title}/>
             <p id = {"stockControlMediaCardTitle"} > {mediaItem.title}</p>

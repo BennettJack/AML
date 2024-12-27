@@ -26,6 +26,13 @@ public class MediaModelController : ControllerBase
         var mediaItems = await _mediaModelService.GetAllMediaItems();
         return Ok(mediaItems);
     }
-    
+
+    [HttpGet]
+    [Route("GetMediaById")]
+    public async Task<IActionResult> GetMediaById(int mediaId)
+    {
+        var mediaItem = await _mediaModelService.GetMediaItemById(mediaId);
+        return Ok(mediaItem);
+    }
 
 }

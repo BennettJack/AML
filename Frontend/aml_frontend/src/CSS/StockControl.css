@@ -17,3 +17,8 @@
     width: 100%;
     text-decoration: none;
 }
+
+#StockControlMediaViewWrapper{
+    display: grid;
+    grid-template-columns: auto auto;
+}

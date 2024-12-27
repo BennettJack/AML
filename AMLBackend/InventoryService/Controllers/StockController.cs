@@ -63,7 +63,7 @@ namespace InventoryService.Controllers
         [Route("Test")]
         public async Task<List<MediaModelFormatConnection>> Test()
         {
-            var test = await _context.MediaModelFormatConnections.ToListAsync();
+            var test =  _context.MediaModelFormatConnections.Include(m => m.Format).Include(m => m.MediaModel).Where(m => m.MediaModel.MediaModelId == 3).ToListAsync().Result;
             return test;
         }
     }

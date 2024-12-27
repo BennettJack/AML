@@ -57,11 +57,12 @@ public class StockRepository(InventoryDbContext _context) : IStockRepository
     {
         return await _context.BranchStockRecords.ToListAsync();
     }
-
-    public async Task<List<BranchStockRecord>> GetStockRecords(int branchId, int mediaId)
+    public async Task<List<BranchStockRecord>> GetStockRecords(int mediaId, int branchId)
     {
-           var records = _context.BranchStockRecords.Where(r =>
-            r.BranchId == branchId && r.MediaModelFormatConnection.MediaModel.MediaModelId == mediaId).ToListAsync().Result;
+           var records = _context.BranchStockRecords.Include(bsr => bsr.MediaModelFormatConnection.Format)
+               .Include(bsr => bsr.MediaModelFormatConnection.MediaModel)
+               .Where(bsr =>
+                   bsr.BranchId == branchId && bsr.MediaModelFormatConnection.MediaModel.MediaModelId == mediaId).ToListAsync().Result;
         return records;
     }
 

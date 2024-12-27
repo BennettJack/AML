@@ -21,4 +21,9 @@ public class MediaModelService(MediaModelRepository _mediaModelRepository)
     {
         await _mediaModelRepository.AddMediaModelFormatConnection(connection);
     }
+
+    public async Task<MediaModel> GetMediaItemById(int id)
+    {
+        return await _mediaModelRepository.GetMediaItemById(id);
+    }
 }

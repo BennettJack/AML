@@ -31,10 +31,10 @@ public class StockService(StockRepository stockRepository)
         await stockRepository.AddBranchStockRecord(branchStockRecord);
     }
     
-    public async Task<List<BranchStockRecordDto>> GetStockRecords(int branchId, int mediaId)
+    public async Task<List<BranchStockRecordDto>> GetStockRecords(int mediaId, int branchId)
     {
         
-        var records = stockRepository.GetStockRecords(branchId, mediaId).Result;
+        var records = stockRepository.GetStockRecords(mediaId, branchId).Result;
         var dtoList = new List<BranchStockRecordDto>();
         foreach (var record in records)
         {

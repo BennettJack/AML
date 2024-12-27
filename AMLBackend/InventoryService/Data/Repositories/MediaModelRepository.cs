@@ -15,7 +15,7 @@ public class MediaModelRepository(InventoryDbContext _context) : IMediaModelRepo
 
     public async Task<MediaModel> GetMediaItemById(int id)
     {
-        throw new NotImplementedException();
+        return await _context.MediaModels.FirstOrDefaultAsync(mm => mm.MediaModelId == id);
     }
 
     public async Task AddMediaModelFormatConnection(MediaModelFormatConnection connection)
