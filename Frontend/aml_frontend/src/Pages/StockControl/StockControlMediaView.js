@@ -6,7 +6,7 @@ const StockControlMediaView = () => {
     let { id } = useParams();
     const [branches, setBranches] = useState([])
     useEffect(() => {
-        axios.get("https://localhost:7095/BranchService/api/Branch/GetAllBranches").then(res =>
+        axios.get("https://localhost:7095/InventoryService/api/Stock/GetMediaStockRecords?mediaId=1&branchId=1").then(res =>
             setBranches(res.data)).catch((e) => console.log(e))
     }, [])
 

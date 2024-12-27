@@ -58,6 +58,19 @@ public class StockRepository(InventoryDbContext _context) : IStockRepository
         return await _context.BranchStockRecords.ToListAsync();
     }
 
+    public async Task<List<BranchStockRecord>> GetStockRecords(int branchId, int mediaId)
+    {
+           var records = _context.BranchStockRecords.Where(r =>
+            r.BranchId == branchId && r.MediaModelFormatConnection.MediaModel.MediaModelId == mediaId).ToListAsync().Result;
+        return records;
+    }
+
+    public async Task<BranchStockRecord> GetStockRecord(BranchStockRecord record)
+    {
+        BranchStockRecord test = await _context.BranchStockRecords.FirstOrDefaultAsync(r =>
+            r.BranchStockRecordId == record.BranchStockRecordId);
+        return test;
+    }
     public Task AddBorrowRecord(BranchStockRecord branchStockRecord)
     {
         throw new NotImplementedException();

@@ -30,4 +30,24 @@ public class StockService(StockRepository stockRepository)
         };
         await stockRepository.AddBranchStockRecord(branchStockRecord);
     }
+    
+    public async Task<List<BranchStockRecordDto>> GetStockRecords(int branchId, int mediaId)
+    {
+        
+        var records = stockRepository.GetStockRecords(branchId, mediaId).Result;
+        var dtoList = new List<BranchStockRecordDto>();
+        foreach (var record in records)
+        {
+            dtoList.Add(new BranchStockRecordDto
+            {
+                BranchId = record.BranchId,
+                MediaModelFormatConnection = record.MediaModelFormatConnection,
+                BorrowedCount = record.BorrowedCount,
+                ReservedCount = record.ReservedCount,
+                StockCount = record.StockCount
+            });
+        }
+
+        return dtoList;
+    }
 }

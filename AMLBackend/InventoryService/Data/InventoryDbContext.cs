@@ -86,7 +86,7 @@ namespace InventoryService.Data
                 x.HasData(
                     new Book
                     {
-                        Id = 1,
+                        MediaModelId = 1,
                         Description = "BOOK 1 DESCRIPTION",
                         PageCount = 300,
                         PublishDate = new(1992, 12, 4),
@@ -96,7 +96,7 @@ namespace InventoryService.Data
                     },
                     new Book
                     {
-                        Id = 2,
+                        MediaModelId = 2,
                         Description = "BOOK 2 DESCRIPTION",
                         PageCount = 410,
                         PublishDate = new(1992, 12, 4),
@@ -106,7 +106,7 @@ namespace InventoryService.Data
                     },
                     new Book
                     {
-                        Id = 3,
+                        MediaModelId = 3,
                         Description = "BOOK 3 DESCRIPTION",
                         PageCount = 89,
                         PublishDate = new(1992, 12, 4),
@@ -116,7 +116,7 @@ namespace InventoryService.Data
                     },
                     new Book
                     {
-                        Id = 4,
+                        MediaModelId = 4,
                         Description = "BOOK 4 DESCRIPTION",
                         PageCount = 280,
                         PublishDate = new(1992, 12, 4),
@@ -126,7 +126,7 @@ namespace InventoryService.Data
                     },
                     new Book
                     {
-                        Id = 5,
+                        MediaModelId = 5,
                         Description = "BOOK 5 DESCRIPTION",
                         PageCount = 390,
                         PublishDate = new(1992, 12, 4),

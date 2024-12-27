@@ -1,5 +1,7 @@
 ﻿using InventoryService.Data;
+using InventoryService.Data.Models;
 using InventoryService.Data.Models.DTO;
+using InventoryService.Data.Services;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,10 +13,12 @@ namespace InventoryService.Controllers
     public class StockController : ControllerBase
     {
         private readonly InventoryDbContext _context;
+        private readonly StockService _stockService;
 
-        public StockController(InventoryDbContext context)
+        public StockController(InventoryDbContext context, StockService stockService)
         {
             _context = context;
+            _stockService = stockService;
         }
         
             
@@ -46,7 +50,23 @@ namespace InventoryService.Controllers
             
             return Ok();
         }
-    }
 
+        [HttpGet]
+        [Route("GetMediaStockRecords")]
+        public async Task<List<BranchStockRecordDto>> GetMediaStockRecords(int mediaId, int branchId)
+        {
+            var stockRecords = _stockService.GetStockRecords(mediaId, branchId).Result;
+            return stockRecords;
+        }
+
+        [HttpGet]
+        [Route("Test")]
+        public async Task<List<MediaModelFormatConnection>> Test()
+        {
+            var test = await _context.MediaModelFormatConnections.ToListAsync();
+            return test;
+        }
+    }
+        
     
 }

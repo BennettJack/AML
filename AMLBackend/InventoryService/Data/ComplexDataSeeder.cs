@@ -28,7 +28,7 @@ public class ComplexDataSeeder(StockService _stockService, MediaModelService _me
                     _mediaModelService.AddMediaModelFormatConnection(
                         new MediaModelFormatConnection
                         {
-                            Media = media,
+                            MediaModel = media,
                             Format = format
                         });
                 }

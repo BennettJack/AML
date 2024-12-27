@@ -58,14 +58,14 @@ namespace InventoryService.Migrations
                     b.Property<int>("AuthorId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("BookId")
+                    b.Property<int>("BookMediaModelId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AuthorId");
 
-                    b.HasIndex("BookId");
+                    b.HasIndex("BookMediaModelId");
 
                     b.ToTable("BookAuthorConnections");
                 });
@@ -111,7 +111,7 @@ namespace InventoryService.Migrations
                     b.Property<int>("BranchId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("MediaModelFormatConnectionId")
+                    b.Property<int?>("MediaModelFormatConnectionId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("ReservedCount")
@@ -133,7 +133,7 @@ namespace InventoryService.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CdDvdId")
+                    b.Property<int>("CdDvdMediaModelId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("TrackName")
@@ -142,7 +142,7 @@ namespace InventoryService.Migrations
 
                     b.HasKey("TrackId");
 
-                    b.HasIndex("CdDvdId");
+                    b.HasIndex("CdDvdMediaModelId");
 
                     b.ToTable("CdTracks");
                 });
@@ -263,7 +263,7 @@ namespace InventoryService.Migrations
 
             modelBuilder.Entity("InventoryService.Data.Models.Media.MediaModel", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("MediaModelId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -290,7 +290,7 @@ namespace InventoryService.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Id");
+                    b.HasKey("MediaModelId");
 
                     b.ToTable("MediaModels");
 
@@ -301,21 +301,21 @@ namespace InventoryService.Migrations
 
             modelBuilder.Entity("InventoryService.Data.Models.MediaModelFormatConnection", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("MediaModelFormatConnectionId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("FormatId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("MediaId")
+                    b.Property<int>("MediaModelId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("Id");
+                    b.HasKey("MediaModelFormatConnectionId");
 
                     b.HasIndex("FormatId");
 
-                    b.HasIndex("MediaId");
+                    b.HasIndex("MediaModelId");
 
                     b.ToTable("MediaModelFormatConnections");
                 });
@@ -329,14 +329,14 @@ namespace InventoryService.Migrations
                     b.Property<int>("GenreId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("MediaId")
+                    b.Property<int>("MediaModelId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
                     b.HasIndex("GenreId");
 
-                    b.HasIndex("MediaId");
+                    b.HasIndex("MediaModelId");
 
                     b.ToTable("MediaModelGenreConnections");
                 });
@@ -433,7 +433,7 @@ namespace InventoryService.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1,
+                            MediaModelId = 1,
                             Description = "BOOK 1 DESCRIPTION",
                             FullImageUrl = "Book1PlaceholderImage.png",
                             PublishDate = new DateTime(1992, 12, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -444,7 +444,7 @@ namespace InventoryService.Migrations
                         },
                         new
                         {
-                            Id = 2,
+                            MediaModelId = 2,
                             Description = "BOOK 2 DESCRIPTION",
                             FullImageUrl = "Book2PlaceholderImage.png",
                             PublishDate = new DateTime(1992, 12, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -455,7 +455,7 @@ namespace InventoryService.Migrations
                         },
                         new
                         {
-                            Id = 3,
+                            MediaModelId = 3,
                             Description = "BOOK 3 DESCRIPTION",
                             FullImageUrl = "Book3PlaceholderImage.png",
                             PublishDate = new DateTime(1992, 12, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -466,7 +466,7 @@ namespace InventoryService.Migrations
                         },
                         new
                         {
-                            Id = 4,
+                            MediaModelId = 4,
                             Description = "BOOK 4 DESCRIPTION",
                             FullImageUrl = "Book4PlaceholderImage.png",
                             PublishDate = new DateTime(1992, 12, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -477,7 +477,7 @@ namespace InventoryService.Migrations
                         },
                         new
                         {
-                            Id = 5,
+                            MediaModelId = 5,
                             Description = "BOOK 5 DESCRIPTION",
                             FullImageUrl = "Book5PlaceholderImage.png",
                             PublishDate = new DateTime(1992, 12, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -544,7 +544,7 @@ namespace InventoryService.Migrations
 
                     b.HasOne("InventoryService.Data.Models.Book", "Book")
                         .WithMany()
-                        .HasForeignKey("BookId")
+                        .HasForeignKey("BookMediaModelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -568,9 +568,7 @@ namespace InventoryService.Migrations
                 {
                     b.HasOne("InventoryService.Data.Models.MediaModelFormatConnection", "MediaModelFormatConnection")
                         .WithMany()
-                        .HasForeignKey("MediaModelFormatConnectionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MediaModelFormatConnectionId");
 
                     b.Navigation("MediaModelFormatConnection");
                 });
@@ -579,7 +577,7 @@ namespace InventoryService.Migrations
                 {
                     b.HasOne("InventoryService.Data.Models.CdDvd", "CdDvd")
                         .WithMany()
-                        .HasForeignKey("CdDvdId")
+                        .HasForeignKey("CdDvdMediaModelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -594,15 +592,15 @@ namespace InventoryService.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("InventoryService.Data.Models.Media.MediaModel", "Media")
+                    b.HasOne("InventoryService.Data.Models.Media.MediaModel", "MediaModel")
                         .WithMany()
-                        .HasForeignKey("MediaId")
+                        .HasForeignKey("MediaModelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Format");
 
-                    b.Navigation("Media");
+                    b.Navigation("MediaModel");
                 });
 
             modelBuilder.Entity("InventoryService.Data.Models.MediaModelGenreConnection", b =>
@@ -615,7 +613,7 @@ namespace InventoryService.Migrations
 
                     b.HasOne("InventoryService.Data.Models.Media.MediaModel", "Media")
                         .WithMany()
-                        .HasForeignKey("MediaId")
+                        .HasForeignKey("MediaModelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

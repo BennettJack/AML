@@ -4,7 +4,7 @@ namespace InventoryService.Data.Models;
 
 public class MediaModelFormatConnection
 {
-    public int Id { get; set; }
-    public MediaModel Media { get; set; }
+    public int MediaModelFormatConnectionId { get; set; }
+    public MediaModel MediaModel { get; set; }
     public Format Format { get; set; }
 }
