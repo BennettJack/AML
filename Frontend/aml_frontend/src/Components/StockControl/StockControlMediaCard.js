@@ -1,16 +1,21 @@
 ﻿import {React, useEffect, useState} from "react";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 import '../../CSS/StockControl.css'
 
+
+
 const StockControlMediaCard = ({mediaItem}) => {
-    const stockControlMediaViewBaseUrl = "http://localhost:3000/StockControlMediaView/"
-    const imageFolder = "Images/MediaImages/FullImage/"
+    let navigate = useNavigate()
+    const stockControlMediaViewBaseUrl = "StockControlMediaView/"
     return (
-        <div id={"MediaCardWrapper"}>
-            <img src={"https://localhost:7254/Images/FullImage/"+mediaItem.fullImageUrl} alt={"image of " + mediaItem.title}/>
-            <a id={"stockControlMediaCardLink"} href={stockControlMediaViewBaseUrl + mediaItem.id}>{mediaItem.title}</a>
+        <div id={"mediaCardWrapper"} onClick={() => navigate((stockControlMediaViewBaseUrl + mediaItem.id))}>
+            <img src={"https://localhost:7254/Images/FullImage/" + mediaItem.fullImageUrl}
+                 alt={"image of " + mediaItem.title}/>
+            <p id = {"stockControlMediaCardTitle"} > {mediaItem.title}</p>
         </div>
     )
 }
 
 export default StockControlMediaCard
+

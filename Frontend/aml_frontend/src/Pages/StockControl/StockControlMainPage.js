@@ -17,7 +17,7 @@ const StockControlMainPage = () => {
 
     return (
         <>
-            <div id={"MediaGrid"}>
+            <div id={"mediaGrid"}>
                 {mediaList.map(function(mediaItem) {
                   return(
                     <StockControlMediaCard mediaItem={mediaItem} />

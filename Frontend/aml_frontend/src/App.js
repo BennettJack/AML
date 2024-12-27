@@ -34,7 +34,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path={"/NewMediaSubmission"} element={<NewMediaSubmission/>} />
           <Route path={"/StockControl"} element={<StockControlMainPage/>} />
-          <Route path={"/StockControlMediaView/:id"} element={<StockControlMediaView/>} />
+          <Route path={"/StockControl/StockControlMediaView/:id"} element={<StockControlMediaView/>} />
         </Routes>
       </BrowserRouter>
     </div>
