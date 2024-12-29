@@ -82,8 +82,14 @@ namespace InventoryService.Migrations
                     b.Property<int>("BranchId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<bool>("CurrentlyBorrowing")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("MediaModelFormatConnectionId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("RecordCreationDate")
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("ReturnDate")
                         .HasColumnType("TEXT");
@@ -382,7 +388,16 @@ namespace InventoryService.Migrations
                     b.Property<int>("BranchId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<DateTime>("DateReservedFor")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("MediaModelFormatConnectionId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("RecordCreationDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("ReservationActive")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("ReservationDate")

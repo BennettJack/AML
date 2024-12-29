@@ -29,7 +29,7 @@ public class BranchController : ControllerBase
     
     [HttpGet]
     [Route("GetBranchById")]
-    public async Task<IActionResult> GetBranches([FromBody] int branchId)
+    public async Task<IActionResult> GetBranchById([FromBody] int branchId)
     {
         var branch = _branchService.GetBranchById(branchId);
         return Ok(branch);

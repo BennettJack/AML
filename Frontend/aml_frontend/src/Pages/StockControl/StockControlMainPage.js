@@ -1,6 +1,8 @@
 ﻿import {React, useEffect, useState} from "react";
 import axios from "axios";
 import StockControlMediaCard from "../../Components/StockControl/StockControlMediaCard";
+import Header from "../../Components/Header";
+import Footer from "../../Components/Footer";
 
 const StockControlMainPage = () => {
     const [mediaList, setMediaList] = useState([])
@@ -17,6 +19,7 @@ const StockControlMainPage = () => {
 
     return (
         <>
+            <Header/>
             <div id={"mediaGrid"}>
                 {mediaList.map(function(mediaItem) {
                   return(
@@ -24,6 +27,7 @@ const StockControlMainPage = () => {
                   )  
                 })}
             </div>
+            <Footer/>
         </>
     )
 }

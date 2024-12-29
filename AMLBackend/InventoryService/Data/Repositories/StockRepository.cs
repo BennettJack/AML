@@ -7,14 +7,17 @@ namespace InventoryService.Data.Repositories;
 
 public class StockRepository(InventoryDbContext _context) : IStockRepository
 {
-    public Task UpdateStock(long serialNumber, int count, int branchId)
+    public async Task UpdateStock(BranchStockRecord record)
     {
-        throw new NotImplementedException();
+        var branchStockRecord = await _context.BranchStockRecords.FirstOrDefaultAsync(bsr =>
+            bsr.BranchStockRecordId == record.BranchStockRecordId);
+        branchStockRecord.StockCount = record.StockCount;
+        await _context.SaveChangesAsync();
     }
 
-    public Task<List<BorrowRecord>> GetAllBorrowRecords()
+    public async Task<List<BorrowRecord>> GetAllBorrowRecords()
     {
-        throw new NotImplementedException();
+        return await _context.BorrowRecords.ToListAsync();
     }
 
     public Task<BorrowRecord> GetBorrowRecordById(int id)
@@ -32,6 +35,10 @@ public class StockRepository(InventoryDbContext _context) : IStockRepository
         throw new NotImplementedException();
     }
 
+    public async Task<List<ReserveRecord>> GetAllReserveRecords()
+    {
+        return await _context.ReserveRecords.ToListAsync();
+    }
     public Task<ReserveRecord> GetReserveRecordById(int id)
     {
         throw new NotImplementedException();
@@ -66,14 +73,23 @@ public class StockRepository(InventoryDbContext _context) : IStockRepository
         return records;
     }
 
-    public async Task<BranchStockRecord> GetStockRecord(BranchStockRecord record)
+    public async Task<BranchStockRecord> GetStockRecord(int mediaModelFormatConnectionId, int branchId)
     {
-        BranchStockRecord test = await _context.BranchStockRecords.FirstOrDefaultAsync(r =>
-            r.BranchStockRecordId == record.BranchStockRecordId);
-        return test;
+        BranchStockRecord record = await _context.BranchStockRecords.Include(r => r.MediaModelFormatConnection).FirstOrDefaultAsync(r =>
+            r.BranchId == branchId && r.MediaModelFormatConnection.MediaModelFormatConnectionId == mediaModelFormatConnectionId);
+        return record;
     }
-    public Task AddBorrowRecord(BranchStockRecord branchStockRecord)
+    public async Task AddBorrowRecord(BorrowRecord record)
     {
-        throw new NotImplementedException();
+        await _context.BorrowRecords.AddAsync(record);
+        await _context.SaveChangesAsync();
     }
+    
+    public async Task AddReserveRecord(ReserveRecord record)
+    {
+        await _context.ReserveRecords.AddAsync(record);
+        await _context.SaveChangesAsync();
+    }
+    
+    
 }

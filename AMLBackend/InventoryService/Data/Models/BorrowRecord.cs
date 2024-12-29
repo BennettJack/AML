@@ -8,4 +8,6 @@ public class BorrowRecord
     public int BranchId { get; set; }
     public DateTime BorrowDate { get; set; }
     public DateTime ReturnDate { get; set; }
+    public DateTime RecordCreationDate { get; set; }
+    public bool CurrentlyBorrowing { get; set; }
 }

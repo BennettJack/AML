@@ -8,9 +8,19 @@ namespace InventoryService.Data.Services;
 
 public class StockService(StockRepository stockRepository)
 {
-    public Task TransferStock(long serialNumber, int count, int branchId)
+    public async Task TransferStock(StockTransferDto stockTransferDto)
     {
-        throw new NotImplementedException();
+        foreach (var update in stockTransferDto.StockUpdates)
+        {
+            var recordToReduce = await stockRepository.GetStockRecord(update.MediaModelFormatConnectionId
+                , stockTransferDto.CurrentBranchId);
+            recordToReduce.StockCount -= update.StockToTransfer;
+            await stockRepository.UpdateStock(recordToReduce);
+            var recordToIncrease = await stockRepository.GetStockRecord(update.MediaModelFormatConnectionId
+                , stockTransferDto.TargetBranchId);
+            recordToIncrease.StockCount += update.StockToTransfer;
+            await stockRepository.UpdateStock(recordToIncrease);
+        }
     }
 
     public async Task<List<BranchStockRecord>> GetAllBranchStockRecords()
@@ -49,5 +59,25 @@ public class StockService(StockRepository stockRepository)
         }
 
         return dtoList;
+    }
+
+    public async Task<List<BorrowRecord>> GetAllBorrowRecords()
+    {
+        return await stockRepository.GetAllBorrowRecords();
+    }
+    
+    public async Task<List<ReserveRecord>> GetAllReserveRecords()
+    {
+        return await stockRepository.GetAllReserveRecords();
+    }
+
+    public async Task AddBorrowRecord(BorrowRecord record)
+    {
+        await stockRepository.AddBorrowRecord(record);
+    }
+
+    public async Task AddReserveRecord(ReserveRecord record)
+    {
+        await stockRepository.AddReserveRecord(record);
     }
 }

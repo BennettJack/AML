@@ -42,12 +42,8 @@ namespace InventoryService.Controllers
         [HttpPost]
         [Route("TransferStock")]
         public async Task<IActionResult> TransferStock([FromBody] StockTransferDto stockTransfer)
-        {   
-            await _context.StockEntries.Where(e =>
-                e.StockEntryId == stockTransfer.StockEntryId).ExecuteUpdateAsync(
-                s => s.SetProperty(e => e.StockCount, 
-                    e => e.StockCount - stockTransfer.TransferCount));
-            
+        {
+            await _stockService.TransferStock(stockTransfer);
             return Ok();
         }
 
@@ -66,6 +62,8 @@ namespace InventoryService.Controllers
             var test =  _context.MediaModelFormatConnections.Include(m => m.Format).Include(m => m.MediaModel).Where(m => m.MediaModel.MediaModelId == 3).ToListAsync().Result;
             return test;
         }
+        
+        
     }
         
     

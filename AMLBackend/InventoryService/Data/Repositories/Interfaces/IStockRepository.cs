@@ -5,7 +5,7 @@ namespace InventoryService.Data.Repositories.Interfaces;
 
 public interface IStockRepository
 {
-    Task UpdateStock(long serialNumber, int count, int branchId);
+    Task UpdateStock(BranchStockRecord record);
 
     Task<List<BorrowRecord>> GetAllBorrowRecords();
     Task<BorrowRecord> GetBorrowRecordById(int id);

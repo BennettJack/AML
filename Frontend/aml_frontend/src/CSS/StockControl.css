@@ -18,7 +18,16 @@
     text-decoration: none;
 }
 
-#StockControlMediaViewWrapper{
+#StockControlMediaViewWrapper, #transferComponentWrapper{
     display: grid;
     grid-template-columns: auto auto;
+}
+
+#selectBranchTransferForm{
+    padding-bottom: 10px;
+}
+
+#mediaViewContainer{
+    padding-right: 300px;
+    justify-self: end;
 }
