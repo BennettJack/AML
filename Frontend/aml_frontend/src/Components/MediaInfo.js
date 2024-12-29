@@ -1,7 +1,9 @@
 import '../CSS/MediaInfo.css';
 import lotrBookSmall from './images/lotrBookSmall.jpg';
+import { useParams } from 'react-router-dom';
 
 const MediaInfo = () => {
+    const { mediaId } = useParams();
     return (
         <>
             <div className="MediaInfo">

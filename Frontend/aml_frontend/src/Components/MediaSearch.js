@@ -1,9 +1,9 @@
 import '../CSS/MediaSearch.css';
 import lotrBookSmall from './images/lotrBookSmall.jpg';
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import React, { useEffect, useState, Component } from "react";
 import { Link } from "react-router-dom";
-import React,{Component} from 'react'
+import Article from './Article';
 
 /*const formToJSON = (elements) =>
 [].reduce.call(
@@ -31,28 +31,43 @@ const reducerFuntion = (data, element) => {
 const form = document.getElementsByClassName('searchAndFilter')[0];
 form.addEventListener('submit', handleFormSubmit);*/
 
-
 const MediaSearch = () => {
-    const {register, handleSubmit} = useForm();
+    const { register, handleSubmit } = useForm();
     const [data, setData] = useState("");
-    
-    const onSubmit = (data) =>
-        //alert(JSON.stringify(data));
-    console.log(data);
-
+    const [mediaData, setMediaData] = useState([]);
     const [formData , setFormData] = useState({
         search: '',
         mediaType: '',
     });
 
+    const onSubmit = (data) => {
+        //alert(JSON.stringify(data));
+        console.log(data);
+        setData(JSON.stringify(data));
+    };
+
     const handleChange = (e) => {
-        const {name, value } = e.target;
+        const { name, value } = e.target;
     
         setFormData({
             ...formData,
             [name]: value,
         });
-    }
+    };
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`https://localhost:7095/`);
+                const data = await response.json();
+                setMediaData(data);
+            } catch (error) {
+                console.error('error fetching data', error);
+            }
+        };
+
+        fetchData();
+    }, [formData]);
 
     return (
         <>
@@ -88,39 +103,22 @@ const MediaSearch = () => {
                 </div>
                 <div className="mediaResult">
                     <section>
-                        <article className="mediaResultArticle" a href="./Pages/MediaResult.js"><Link to="./Pages/MediaResult.js"></Link>
-                            <div>
-                                <img src={lotrBookSmall} id="mediaResultImage" alt="lotr book" width="113" height="171"></img>
-                            </div>
-                            <div>
-                                <p>Media Name</p>
-                                <p>Author</p>
-                                <p>Publish Date</p>
-                            </div>
-                        </article>
+                        {mediaData.map((media) => (
+                            <Article key={media.id} media={media} />
+                        ))}
                     </section>
                     <section>
                         <article className="mediaResultArticle">
-                            <div>
-                            <img src={lotrBookSmall} id="mediaResultImage" alt="lotr book" width="113" height="171"></img>
-                            </div>
-                            <div>
-                            <p>Media Name</p>
-                            <p>Author</p>
-                            <p>Publish Date</p>
-                            </div>
-                        </article>
-                    </section>
-                    <section>
-                        <article className="mediaResultArticle">
-                            <div>
-                            <img src={lotrBookSmall} id="mediaResultImage" alt="lotr book" width="113" height="171"></img>
-                            </div>
-                            <div>
-                            <p>Media Name</p>
-                            <p>Author</p>
-                            <p>Publish Date</p>
-                            </div>
+                            <Link to="./Pages/MediaResult.js">
+                                <div>
+                                    <img src={lotrBookSmall} id="mediaResultImage" alt="lotr book" width="113" height="171"></img>
+                                </div>
+                                <div>
+                                    <p>Media Name</p>
+                                    <p>Author</p>
+                                    <p>Publish Date</p>
+                                </div>
+                            </Link>
                         </article>
                     </section>
                 </div>
@@ -131,6 +129,7 @@ const MediaSearch = () => {
             
             </div>
         </>
-    )
-}
+    );
+};
+
 export default MediaSearch;

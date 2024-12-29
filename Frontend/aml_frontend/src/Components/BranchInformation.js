@@ -1,7 +1,23 @@
 import "../CSS/BranchInformation.css";
 import MapImage from './images.MapImage.png';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 const BranchInformation = () => {
+    const { id } = useParams();
+    const [branch, setBranch] = useState(null)
+
+    useEffect(() => {
+        fetch("https://localhost:7095/BranchService/api/Branch/${id}")
+        .then(response => response.json())
+        .then(data => setBranch(data))
+        .catch(error => console.error('Error fetching branch:', error));
+    }, [id]);
+
+    if (!branch) {
+        return <div>Loading</div>;
+    }
+
     return (
         <div>
             <h2>Branch Information</h2>
@@ -16,7 +32,7 @@ const BranchInformation = () => {
                 <li>Saturday: Closed</li>
                 <li>Sunday: Closed</li>
             </ul>
-            <h2>Branch Location</h2>
+            <h2>{branch.branchLocation}</h2>
             <div id="map">
             <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
             <img src={MapImage} alt = "Map Image" width="700" height="500"></img>
