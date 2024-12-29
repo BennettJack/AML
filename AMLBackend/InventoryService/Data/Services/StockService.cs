@@ -60,6 +60,26 @@ public class StockService(StockRepository stockRepository)
 
         return dtoList;
     }
+    
+    public async Task<List<BranchStockRecordDto>> GetStockRecords(int branchId)
+    {
+        
+        var records = stockRepository.GetStockRecords(branchId).Result;
+        var dtoList = new List<BranchStockRecordDto>();
+        foreach (var record in records)
+        {
+            dtoList.Add(new BranchStockRecordDto
+            {
+                BranchId = record.BranchId,
+                MediaModelFormatConnection = record.MediaModelFormatConnection,
+                BorrowedCount = record.BorrowedCount,
+                ReservedCount = record.ReservedCount,
+                StockCount = record.StockCount
+            });
+        }
+
+        return dtoList;
+    }
 
     public async Task<List<BorrowRecord>> GetAllBorrowRecords()
     {

@@ -45,6 +45,16 @@ namespace BranchService.Migrations
                         {
                             BranchId = 3,
                             BranchLocation = "Manchester"
+                        },
+                        new
+                        {
+                            BranchId = 4,
+                            BranchLocation = "Leeds"
+                        },
+                        new
+                        {
+                            BranchId = 5,
+                            BranchLocation = "London"
                         });
                 });
 

@@ -54,7 +54,14 @@ namespace InventoryService.Controllers
             var stockRecords = _stockService.GetStockRecords(mediaId, branchId).Result;
             return stockRecords;
         }
-
+        
+        [HttpGet]
+        [Route("GetAllMediaStockRecordsByBranch")]
+        public async Task<List<BranchStockRecordDto>> GetAllMediaStockRecordsByBranch(int branchId)
+        {
+            var stockRecords = _stockService.GetStockRecords(branchId).Result;
+            return stockRecords;
+        }
         [HttpGet]
         [Route("Test")]
         public async Task<List<MediaModelFormatConnection>> Test()

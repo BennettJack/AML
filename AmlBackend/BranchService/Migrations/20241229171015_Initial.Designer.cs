@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BranchService.Migrations
 {
     [DbContext(typeof(BranchDbContext))]
-    [Migration("20241204230153_branchuserconn")]
-    partial class branchuserconn
+    [Migration("20241229171015_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,6 +48,16 @@ namespace BranchService.Migrations
                         {
                             BranchId = 3,
                             BranchLocation = "Manchester"
+                        },
+                        new
+                        {
+                            BranchId = 4,
+                            BranchLocation = "Leeds"
+                        },
+                        new
+                        {
+                            BranchId = 5,
+                            BranchLocation = "London"
                         });
                 });
 

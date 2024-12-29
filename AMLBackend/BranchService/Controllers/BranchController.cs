@@ -29,9 +29,9 @@ public class BranchController : ControllerBase
     
     [HttpGet]
     [Route("GetBranchById")]
-    public async Task<IActionResult> GetBranchById([FromBody] int branchId)
+    public async Task<IActionResult> GetBranchById(int branchId)
     {
-        var branch = _branchService.GetBranchById(branchId);
+        var branch = await _branchService.GetBranchById(branchId);
         return Ok(branch);
     }
 

@@ -18,6 +18,8 @@ import Login from "./Components/Login";
 import NewMediaSubmission from "./Pages/NewMediaSubmission/NewMediaSubmission";
 import StockControlMainPage from "./Pages/StockControl/StockControlMainPage";
 import StockControlMediaView from "./Pages/StockControl/StockControlMediaView";
+import Reports from "./Pages/Reports/Reports";
+import MediaReports from "./Pages/Reports/MediaReports";
 
 function App() {
   return (
@@ -35,6 +37,8 @@ function App() {
           <Route path={"/NewMediaSubmission"} element={<NewMediaSubmission/>} />
           <Route path={"/StockControl"} element={<StockControlMainPage/>} />
           <Route path={"/StockControl/StockControlMediaView/:id"} element={<StockControlMediaView/>} />
+          <Route path={"/Reports"} element={<Reports/>}/>
+          <Route path={"/Reports/MediaReports"} element={<MediaReports/>}/>
         </Routes>
       </BrowserRouter>
     </div>

@@ -22,6 +22,10 @@ const styles = {
         color: '#fff',
         padding: '20px 0',
         textAlign: 'center',
+        position: 'fixed',
+        width: '100%',
+        left: 0,
+        bottom: 0,
     },
     container: {
         maxWidth: '1200px',

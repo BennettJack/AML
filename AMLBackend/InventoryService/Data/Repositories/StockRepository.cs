@@ -72,6 +72,15 @@ public class StockRepository(InventoryDbContext _context) : IStockRepository
                    bsr.BranchId == branchId && bsr.MediaModelFormatConnection.MediaModel.MediaModelId == mediaId).ToListAsync().Result;
         return records;
     }
+    
+    public async Task<List<BranchStockRecord>> GetStockRecords(int branchId)
+    {
+        var records = _context.BranchStockRecords.Include(bsr => bsr.MediaModelFormatConnection.Format)
+            .Include(bsr => bsr.MediaModelFormatConnection.MediaModel)
+            .Where(bsr =>
+                bsr.BranchId == branchId).ToListAsync().Result;
+        return records;
+    }
 
     public async Task<BranchStockRecord> GetStockRecord(int mediaModelFormatConnectionId, int branchId)
     {

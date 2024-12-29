@@ -18,7 +18,9 @@ public class BranchDbContext :DbContext
             x.HasData(
                 new Branch { BranchId = 1, BranchLocation = "Sheffield" },
                 new Branch { BranchId = 2, BranchLocation = "Chesterfield" },
-                new Branch { BranchId = 3, BranchLocation = "Manchester" }
+                new Branch { BranchId = 3, BranchLocation = "Manchester" },
+                new Branch {BranchId = 4, BranchLocation = "Leeds"},
+                new Branch {BranchId = 5, BranchLocation = "London"}
             );
         });
     }
