@@ -1,0 +1,15 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=25e8ff6e_002D0fde_002D4750_002D8d1d_002Db9713b1a2f13/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GetBorrowRecordById" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::6045C15C-628E-487E-A7DC-7ADA96D9280E::net8.0::ISTest.UnitTest1.GetBorrowRecordById&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::3D089C86-2B97-40C6-8DFB-0E3F490811CE::net8.0::ISTest.UnitTest1.GetBorrowRecordById&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::3D089C86-2B97-40C6-8DFB-0E3F490811CE::net8.0::ISTest.StockControllerTest.TransferStockOkRequest&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	
+	
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d6f4c4fa_002D723c_002D4539_002D892c_002D546208af0f2a/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from UnitTest1.cs #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::2C4CAED9-13AA-416D-B931-1BC1D3564031::net8.0::ISTest.UnitTest1.GetBorrowRecordById&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

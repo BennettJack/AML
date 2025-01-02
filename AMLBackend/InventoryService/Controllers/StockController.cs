@@ -1,6 +1,7 @@
 ﻿using InventoryService.Data;
 using InventoryService.Data.Models;
 using InventoryService.Data.Models.DTO;
+using InventoryService.Data.Repositories.Interfaces;
 using InventoryService.Data.Services;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -12,12 +13,10 @@ namespace InventoryService.Controllers
     [Route("api/[controller]")]
     public class StockController : ControllerBase
     {
-        private readonly InventoryDbContext _context;
-        private readonly StockService _stockService;
+        private readonly IStockService _stockService;
 
-        public StockController(InventoryDbContext context, StockService stockService)
+        public StockController(IStockService stockService)
         {
-            _context = context;
             _stockService = stockService;
         }
         
@@ -26,16 +25,6 @@ namespace InventoryService.Controllers
         [Route("UpdateStock")]
         public async Task<IActionResult> UpdateStock([FromBody] List<StockUpdateDto> stockUpdateDto)
         {
-            foreach (var update in stockUpdateDto)
-            {
-                await _context.StockEntries.Where(e =>
-                    e.StockEntryId == update.StockEntryId).ExecuteUpdateAsync(
-                    s => s.SetProperty(e => e.StockCount, 
-                        e => update.StockCount));
-            }
-
-
-            await _context.SaveChangesAsync();
             return Ok();
         }
         
@@ -62,14 +51,13 @@ namespace InventoryService.Controllers
             var stockRecords = _stockService.GetStockRecords(branchId).Result;
             return stockRecords;
         }
+
         [HttpGet]
-        [Route("Test")]
-        public async Task<List<MediaModelFormatConnection>> Test()
+        [Route("GetBorrowRecordById")]
+        public async Task<BorrowRecord> GetBorrowRecordById(int id)
         {
-            var test =  _context.MediaModelFormatConnections.Include(m => m.Format).Include(m => m.MediaModel).Where(m => m.MediaModel.MediaModelId == 3).ToListAsync().Result;
-            return test;
+            return await _stockService.GetBorrowRecordById(id);
         }
-        
         
     }
         

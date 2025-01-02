@@ -5,8 +5,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace InventoryService.Data.Repositories;
 
-public class StockRepository(InventoryDbContext _context) : IStockRepository
+public class StockRepository: IStockRepository
 {
+    private readonly InventoryDbContext _context;
+
+    public StockRepository(InventoryDbContext context)
+    {
+        _context = context;
+    } 
     public async Task UpdateStock(BranchStockRecord record)
     {
         var branchStockRecord = await _context.BranchStockRecords.FirstOrDefaultAsync(bsr =>
@@ -22,7 +28,7 @@ public class StockRepository(InventoryDbContext _context) : IStockRepository
 
     public Task<BorrowRecord> GetBorrowRecordById(int id)
     {
-        throw new NotImplementedException();
+        return _context.BorrowRecords.FirstOrDefaultAsync(br => br.BorrowRecordId == id);
     }
 
     public Task<BorrowRecord> GetBorrowRecord(MediaModelFormatConnection formatConnection)

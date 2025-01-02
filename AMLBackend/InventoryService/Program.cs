@@ -1,6 +1,7 @@
 
 using InventoryService.Data;
 using InventoryService.Data.Repositories;
+using InventoryService.Data.Repositories.Interfaces;
 using InventoryService.Data.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
@@ -19,8 +20,8 @@ builder.Services.AddScoped<BookRepository>();
 builder.Services.AddScoped<MediaModelRepository>();
 builder.Services.AddScoped<AttributeRepository>();
 builder.Services.AddScoped<MediaModelService>();
-builder.Services.AddScoped<StockRepository>();
-builder.Services.AddScoped<StockService>();
+builder.Services.AddScoped<IStockRepository, StockRepository>();
+builder.Services.AddScoped<IStockService, StockService>();
 builder.Services.AddScoped<ComplexDataSeeder>();
 
 var app = builder.Build();

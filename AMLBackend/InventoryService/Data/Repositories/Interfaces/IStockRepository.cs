@@ -18,4 +18,12 @@ public interface IStockRepository
     
     Task AddBranchStockRecord(BranchStockRecord branchStockRecord);
     Task<List<BranchStockRecord>> GetAllBranchStockRecords();
+    
+    Task<BranchStockRecord> GetStockRecord(int mediaModelFormatConnectionId, int branchId);
+
+    Task<List<BranchStockRecord>> GetStockRecords(int mediaId, int branchId);
+    Task<List<BranchStockRecord>> GetStockRecords(int branchId);
+    Task AddBorrowRecord(BorrowRecord record);
+    Task AddReserveRecord(ReserveRecord record);
+    Task<List<ReserveRecord>> GetAllReserveRecords();
 }

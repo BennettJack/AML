@@ -1,12 +1,13 @@
 ﻿using InventoryService.Data.Models;
 using InventoryService.Data.Models.DTO;
 using InventoryService.Data.Repositories;
+using InventoryService.Data.Repositories.Interfaces;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InventoryService.Data.Services;
 
-public class StockService(StockRepository stockRepository)
+public class StockService(IStockRepository stockRepository) : IStockService
 {
     public async Task TransferStock(StockTransferDto stockTransferDto)
     {
@@ -45,6 +46,13 @@ public class StockService(StockRepository stockRepository)
     {
         
         var records = stockRepository.GetStockRecords(mediaId, branchId).Result;
+        var dtoList = GenerateBranchStockRecordDto(records);
+
+        return dtoList;
+    }
+    
+    private List<BranchStockRecordDto> GenerateBranchStockRecordDto(List<BranchStockRecord> records)
+    {
         var dtoList = new List<BranchStockRecordDto>();
         foreach (var record in records)
         {
@@ -99,5 +107,10 @@ public class StockService(StockRepository stockRepository)
     public async Task AddReserveRecord(ReserveRecord record)
     {
         await stockRepository.AddReserveRecord(record);
+    }
+
+    public async Task<BorrowRecord> GetBorrowRecordById(int id)
+    {
+        return await stockRepository.GetBorrowRecordById(id);
     }
 }

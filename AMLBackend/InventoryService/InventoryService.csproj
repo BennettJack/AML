@@ -8,19 +8,61 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="AsyncEnumerator" Version="4.0.2" />
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.10" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="8.0.10" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.10" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.10" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.10">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
         <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
+        <PackageReference Include="Moq" Version="4.20.72" />
+        <PackageReference Include="Moq.EntityFrameworkCore" Version="8.0.1.2" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+        <PackageReference Include="xunit" Version="2.5.3" />
     </ItemGroup>
 
     <ItemGroup>
         <Folder Include="Migrations\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="InventoryServiceTestProject\bin\Debug\net8.0\appsettings.Development.json" />
+      <_ContentIncludedByDefault Remove="InventoryServiceTestProject\bin\Debug\net8.0\appsettings.json" />
+      <_ContentIncludedByDefault Remove="InventoryServiceTestProject\bin\Debug\net8.0\InventoryService.deps.json" />
+      <_ContentIncludedByDefault Remove="InventoryServiceTestProject\bin\Debug\net8.0\InventoryService.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject.deps.json" />
+      <_ContentIncludedByDefault Remove="InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\bin\Debug\net8.0\appsettings.Development.json" />
+      <_ContentIncludedByDefault Remove="InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\bin\Debug\net8.0\appsettings.json" />
+      <_ContentIncludedByDefault Remove="InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\bin\Debug\net8.0\InventoryService.deps.json" />
+      <_ContentIncludedByDefault Remove="InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\bin\Debug\net8.0\InventoryService.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject.deps.json" />
+      <_ContentIncludedByDefault Remove="InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\bin\Debug\net8.0\appsettings.Development.json" />
+      <_ContentIncludedByDefault Remove="InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\bin\Debug\net8.0\appsettings.json" />
+      <_ContentIncludedByDefault Remove="InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\bin\Debug\net8.0\InventoryService.deps.json" />
+      <_ContentIncludedByDefault Remove="InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\bin\Debug\net8.0\InventoryService.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject.deps.json" />
+      <_ContentIncludedByDefault Remove="InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\obj\InventoryServiceTestProject.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\obj\project.packagespec.json" />
+      <_ContentIncludedByDefault Remove="InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\obj\Debug\net8.0\InventoryServiceTestProject.sourcelink.json" />
+      <_ContentIncludedByDefault Remove="InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\obj\InventoryServiceTestProject.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\obj\project.packagespec.json" />
+      <_ContentIncludedByDefault Remove="InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\obj\Debug\net8.0\InventoryServiceTestProject.sourcelink.json" />
+      <_ContentIncludedByDefault Remove="InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\obj\InventoryServiceTestProject.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="InventoryServiceTestProject\bin\Debug\net8.0\InventoryServiceTestProject\obj\project.packagespec.json" />
+      <_ContentIncludedByDefault Remove="InventoryServiceTestProject\obj\Debug\net8.0\InventoryServiceTestProject.sourcelink.json" />
+      <_ContentIncludedByDefault Remove="InventoryServiceTestProject\obj\InventoryServiceTestProject.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="InventoryServiceTestProject\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="InventoryServiceTestProject\obj\project.packagespec.json" />
     </ItemGroup>
 
 </Project>

@@ -29,3 +29,5 @@
 /AmlBackend/BranchService/.idea
 /Frontend/.idea
 /AmlBackend/InventoryService/obj
+/AMLBackend/InventoryService/ISTest/bin
+/AMLBackend/InventoryService/ISTest/obj

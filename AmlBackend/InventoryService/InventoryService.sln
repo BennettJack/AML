@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryService", "InventoryService.csproj", "{3D089C86-2B97-40C6-8DFB-0E3F490811CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISTest", "ISTest\ISTest.csproj", "{6045C15C-628E-487E-A7DC-7ADA96D9280E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{3D089C86-2B97-40C6-8DFB-0E3F490811CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D089C86-2B97-40C6-8DFB-0E3F490811CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D089C86-2B97-40C6-8DFB-0E3F490811CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6045C15C-628E-487E-A7DC-7ADA96D9280E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6045C15C-628E-487E-A7DC-7ADA96D9280E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6045C15C-628E-487E-A7DC-7ADA96D9280E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6045C15C-628E-487E-A7DC-7ADA96D9280E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

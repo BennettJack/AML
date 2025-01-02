@@ -1,18 +1,13 @@
-using System.Runtime.InteropServices.JavaScript;
 using InventoryService.Data.Models;
 using InventoryService.Data.Models.CDDVD;
 using InventoryService.Data.Models.Media;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace InventoryService.Data
 {
     public class InventoryDbContext : DbContext
     {
-        public InventoryDbContext(DbContextOptions<InventoryDbContext> options)
-        : base(options)
-        {
-            Database.EnsureCreated();
-        }
         public DbSet<MediaModel> MediaModels { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<Journal> Journals { get; set; }
@@ -31,6 +26,8 @@ namespace InventoryService.Data
         public DbSet<ReserveRecord> ReserveRecords { get; set; }
         public DbSet<MediaModelFormatConnection> MediaModelFormatConnections { get; set; }
         public DbSet<StockEntry> StockEntries { get; set; }
+        
+        public virtual DbSet<BorrowRecord> TestBorrowRecords { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
