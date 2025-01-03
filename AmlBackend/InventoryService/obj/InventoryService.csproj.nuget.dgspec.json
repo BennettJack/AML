@@ -49,6 +49,10 @@
               "target": "Package",
               "version": "[4.0.2, )"
             },
+            "EntityFramework": {
+              "target": "Package",
+              "version": "[6.5.1, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.10, )"
@@ -78,6 +82,14 @@
             "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
               "target": "Package",
               "version": "[1.21.0, )"
+            },
+            "MockQueryable.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "MockQueryable.Moq": {
+              "target": "Package",
+              "version": "[7.0.3, )"
             },
             "Moq": {
               "target": "Package",

@@ -9,17 +9,48 @@ namespace InventoryService.Data.Services;
 
 public class StockService(IStockRepository stockRepository) : IStockService
 {
+    private bool ContainsZeroValue(Object obj){
+        var containsZeroValue = obj.GetType().GetProperties()
+            .Where(propInfo => propInfo.PropertyType == typeof(int))
+            .Select(propInfo => (int)propInfo.GetValue(obj))
+            .Any(value => value == 0);
+
+        return containsZeroValue;
+    }
+    
     public async Task TransferStock(StockTransferDto stockTransferDto)
     {
+        if (ContainsZeroValue(stockTransferDto))
+        {
+            throw new ArgumentException("Error: Request contains a zero value");
+        }
+
         foreach (var update in stockTransferDto.StockUpdates)
         {
             var recordToReduce = await stockRepository.GetStockRecord(update.MediaModelFormatConnectionId
                 , stockTransferDto.CurrentBranchId);
-            recordToReduce.StockCount -= update.StockToTransfer;
+            try
+            {
+                recordToReduce.StockCount -= update.StockToTransfer;
+            }
+            catch (NullReferenceException)
+            {
+                throw new NullReferenceException("Record does not exist");
+            }
+
             await stockRepository.UpdateStock(recordToReduce);
             var recordToIncrease = await stockRepository.GetStockRecord(update.MediaModelFormatConnectionId
                 , stockTransferDto.TargetBranchId);
-            recordToIncrease.StockCount += update.StockToTransfer;
+
+            try
+            {
+                recordToIncrease.StockCount += update.StockToTransfer;
+            }
+            catch(NullReferenceException)
+            {
+                throw new NullReferenceException("Record does not exist");
+            }
+            
             await stockRepository.UpdateStock(recordToIncrease);
         }
     }
@@ -44,7 +75,6 @@ public class StockService(IStockRepository stockRepository) : IStockService
     
     public async Task<List<BranchStockRecordDto>> GetStockRecords(int mediaId, int branchId)
     {
-        
         var records = stockRepository.GetStockRecords(mediaId, branchId).Result;
         var dtoList = GenerateBranchStockRecordDto(records);
 

@@ -1,11 +1,12 @@
 ﻿using InventoryService.Data.Models;
 using InventoryService.Data.Models.DTO;
 using InventoryService.Data.Repositories;
+using InventoryService.Data.Repositories.Interfaces;
 using InventoryService.Data.Services;
 
 namespace InventoryService.Data;
 
-public class ComplexDataSeeder(StockService _stockService, MediaModelService _mediaModelService, AttributeRepository _attributeRepository)
+public class ComplexDataSeeder(IStockService _stockService, MediaModelService _mediaModelService, AttributeRepository _attributeRepository)
 {
     public async void SeedData()
     {

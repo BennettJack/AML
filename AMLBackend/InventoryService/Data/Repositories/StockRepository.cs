@@ -15,6 +15,7 @@ public class StockRepository: IStockRepository
     } 
     public async Task UpdateStock(BranchStockRecord record)
     {
+     
         var branchStockRecord = await _context.BranchStockRecords.FirstOrDefaultAsync(bsr =>
             bsr.BranchStockRecordId == record.BranchStockRecordId);
         branchStockRecord.StockCount = record.StockCount;

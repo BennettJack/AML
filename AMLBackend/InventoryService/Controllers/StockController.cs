@@ -6,6 +6,7 @@ using InventoryService.Data.Services;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
 
 namespace InventoryService.Controllers
 {
@@ -32,8 +33,19 @@ namespace InventoryService.Controllers
         [Route("TransferStock")]
         public async Task<IActionResult> TransferStock([FromBody] StockTransferDto stockTransfer)
         {
-            await _stockService.TransferStock(stockTransfer);
-            return Ok();
+            try
+            {
+                await _stockService.TransferStock(stockTransfer);
+                return Ok();
+            }
+            catch (ArgumentException exception)
+            {
+                return BadRequest(exception.Message);
+            }
+            catch (NullReferenceException exception)
+            {
+                return BadRequest(exception.Message);
+            }
         }
 
         [HttpGet]

@@ -4,6 +4,9 @@
     &lt;TestId&gt;xUnit::6045C15C-628E-487E-A7DC-7ADA96D9280E::net8.0::ISTest.UnitTest1.GetBorrowRecordById&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::3D089C86-2B97-40C6-8DFB-0E3F490811CE::net8.0::ISTest.UnitTest1.GetBorrowRecordById&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::3D089C86-2B97-40C6-8DFB-0E3F490811CE::net8.0::ISTest.StockControllerTest.TransferStockOkRequest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::3D089C86-2B97-40C6-8DFB-0E3F490811CE::net8.0::ISTest.StockControllerTest.TransferStockContainsZeroValue&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::3D089C86-2B97-40C6-8DFB-0E3F490811CE::net8.0::ISTest.StockServiceTest.TransferStockContainsZeroValue&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::3D089C86-2B97-40C6-8DFB-0E3F490811CE::net8.0::ISTest.StockServiceTest.GetDemoStockTransferDto&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	

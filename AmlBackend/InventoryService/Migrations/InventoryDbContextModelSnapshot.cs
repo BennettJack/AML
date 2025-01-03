@@ -102,7 +102,7 @@ namespace InventoryService.Migrations
 
                     b.HasIndex("MediaModelFormatConnectionId");
 
-                    b.ToTable("BorrowRecords");
+                    b.ToTable("BorrowRecord");
                 });
 
             modelBuilder.Entity("InventoryService.Data.Models.BranchStockRecord", b =>

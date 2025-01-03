@@ -8,26 +8,33 @@ namespace InventoryService.Data
 {
     public class InventoryDbContext : DbContext
     {
-        public DbSet<MediaModel> MediaModels { get; set; }
-        public DbSet<Book> Books { get; set; }
-        public DbSet<Journal> Journals { get; set; }
-        public DbSet<MultiMediaGame> MultiMediaGames { get; set; }
-        public DbSet<Periodical> Periodicals { get; set; }
-        public DbSet<CdDvd> CdDvds { get; set; }
-        public DbSet<CdTrack> CdTracks { get; set; }
-        public DbSet<Publisher> Publishers { get; set; }
-        public DbSet<Genre> Genres { get; set; }
-        public DbSet<Author> Authors { get; set; }
-        public DbSet<BookAuthorConnection>  BookAuthorConnections { get; set; }
-        public DbSet<MediaModelGenreConnection> MediaModelGenreConnections { get; set; }
-        public DbSet<Format> Formats { get; set; }
-        public DbSet<BranchStockRecord> BranchStockRecords { get; set; }
-        public DbSet<BorrowRecord> BorrowRecords { get; set; }
-        public DbSet<ReserveRecord> ReserveRecords { get; set; }
-        public DbSet<MediaModelFormatConnection> MediaModelFormatConnections { get; set; }
-        public DbSet<StockEntry> StockEntries { get; set; }
-        
-        public virtual DbSet<BorrowRecord> TestBorrowRecords { get; set; }
+        public InventoryDbContext(DbContextOptions<InventoryDbContext> options) : base(options)
+        {
+            
+        }
+
+        public InventoryDbContext()
+        {
+            
+        }
+        public virtual DbSet<MediaModel> MediaModels { get; set; }
+        public virtual DbSet<Book> Books { get; set; }
+        public virtual DbSet<Journal> Journals { get; set; }
+        public virtual DbSet<MultiMediaGame> MultiMediaGames { get; set; }
+        public virtual DbSet<Periodical> Periodicals { get; set; }
+        public virtual DbSet<CdDvd> CdDvds { get; set; }
+        public virtual DbSet<CdTrack> CdTracks { get; set; }
+        public virtual DbSet<Publisher> Publishers { get; set; }
+        public virtual DbSet<Genre> Genres { get; set; }
+        public virtual DbSet<Author> Authors { get; set; }
+        public virtual DbSet<BookAuthorConnection>  BookAuthorConnections { get; set; }
+        public virtual DbSet<MediaModelGenreConnection> MediaModelGenreConnections { get; set; }
+        public virtual DbSet<Format> Formats { get; set; }
+        public virtual DbSet<BranchStockRecord> BranchStockRecords { get; set; }
+        public virtual DbSet<BorrowRecord> BorrowRecords { get; set; }
+        public virtual DbSet<ReserveRecord> ReserveRecords { get; set; }
+        public virtual DbSet<MediaModelFormatConnection> MediaModelFormatConnections { get; set; }
+        public virtual DbSet<StockEntry> StockEntries { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

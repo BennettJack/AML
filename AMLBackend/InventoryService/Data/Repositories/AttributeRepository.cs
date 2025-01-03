@@ -23,6 +23,11 @@ public class AttributeRepository(InventoryDbContext _context) : IAttributeReposi
 
     public Task<List<Genre>> GetAllGenres()
     {
-        throw new NotImplementedException();
+        return _context.Genres.ToListAsync();
+    }
+    
+    public List<Genre> GetAllGenres2()
+    {
+        return _context.Genres.ToList();
     }
 }
