@@ -58,7 +58,7 @@ const MediaSearch = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`https://localhost:7095/`);
+                const response = await fetch(`https://localhost:7095/BranchService/api/Branch/GetAllBranches`);
                 const data = await response.json();
                 setMediaData(data);
             } catch (error) {

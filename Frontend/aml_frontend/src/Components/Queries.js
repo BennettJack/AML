@@ -1,6 +1,16 @@
 import '../CSS/Queries.css';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const Queries = () => {
+    const [branches, setBranches] = useState([]);
+
+    useEffect(() => {
+        axios.get("https://localhost:7095/BranchService/api/Branch/GetAllBranches")
+        .then(res => setBranches(res.data))
+        .catch((e) => console.log(e));
+    }, []);
+
     return (
         <div className="QueriesContainer">
             <div className = "QueryButtons">
@@ -28,4 +38,5 @@ const Queries = () => {
         </div>
     )
 }
+
 export default Queries;

@@ -39,4 +39,5 @@ const Branches = () => {
         </>
     )
 }
+
 export default Branches;
