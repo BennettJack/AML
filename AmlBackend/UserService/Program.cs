@@ -22,6 +22,7 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
         options.Password.RequireDigit = true;
         options.Password.RequiredLength = 10;
         options.Password.RequireUppercase = true;
+        options.Password.RequiredUniqueChars = 1;
     })
     .AddEntityFrameworkStores<UserDbContext>();
 

@@ -1,5 +1,6 @@
 // src/components/Footer.js
 import React from 'react';
+import "../CSS/Footer.css"
 
 const Footer = () => {
     return (
@@ -17,16 +18,6 @@ const Footer = () => {
 };
 
 const styles = {
-    footer: {
-        backgroundColor: '#333',
-        color: '#fff',
-        padding: '20px 0',
-        textAlign: 'center',
-        position: 'fixed',
-        width: '100%',
-        left: 0,
-        bottom: 0,
-    },
     container: {
         maxWidth: '1200px',
         margin: '0 auto',

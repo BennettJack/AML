@@ -49,8 +49,8 @@ namespace InventoryService.Controllers
         }
 
         [HttpGet]
-        [Route("GetMediaStockRecords")]
-        public async Task<List<BranchStockRecordDto>> GetMediaStockRecords(int mediaId, int branchId)
+        [Route("GetMediaStockRecordsByBranch")]
+        public async Task<List<BranchStockRecordDto>> GetMediaStockRecordsByBranch(int mediaId, int branchId)
         {
             var stockRecords = _stockService.GetStockRecords(mediaId, branchId).Result;
             return stockRecords;
@@ -63,6 +63,7 @@ namespace InventoryService.Controllers
             var stockRecords = _stockService.GetStockRecords(branchId).Result;
             return stockRecords;
         }
+        
 
         [HttpGet]
         [Route("GetBorrowRecordById")]
@@ -83,6 +84,21 @@ namespace InventoryService.Controllers
         public async Task<List<ReserveRecord>> GetBranchReserveRecordsByDate(int branchId, DateTime startDate, DateTime endDate)
         {
             return await _stockService.GetReserveRecordByDateAndBranch(branchId, startDate, endDate);
+        }
+        
+        [HttpGet]
+        [Route("GetBranchBorrowRecordsByMedia")]
+        public async Task<List<BorrowRecord>> GetBranchBorrowRecordsByMedia(int mediaId, int branchId, DateTime startDate, DateTime endDate)
+        {
+            return await _stockService.GetBranchBorrowRecordsByMedia(mediaId, branchId, startDate, endDate);
+        }
+        
+        [HttpGet]
+        [Route("GetBranchReserveRecordsByMedia")]
+        public async Task<List<ReserveRecord>> GetBranchReserveRecordsByMedia(int mediaId, int branchId, DateTime startDate, DateTime endDate)
+        {
+            
+            return await _stockService.GetBranchReserveRecordsByMedia(mediaId, branchId, startDate, endDate);
         }
         
     }

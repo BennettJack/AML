@@ -1,19 +1,55 @@
 ﻿import {React, useEffect, useState} from "react";
-import axios from "axios";
-import Header from "../../Components/Header";
-import Footer from "../../Components/Footer";
-import {useNavigate} from "react-router-dom";
 import "../../CSS/Reports.css"
 
-const MediaBorrowRecordsByBranchTable = ({branchData}) => {
+const MediaBorrowRecordsByBranchTable = ({branchDetails, borrowRecords}) => {
 
-    const generateTable = () => {
-
+    const generateDate = (date) =>{
+        const dateObject = new Date(date)
+        const day = dateObject.getDate()
+        const month = dateObject.getMonth() +1
+        const year = dateObject.getFullYear()
+        return day+"/"+month+"/"+year
+    }
+    
+    const currentlyBorrowingToString = (currentlyBorrowingBool) => {
+        if(currentlyBorrowingBool){
+            //Returning false because user is still borrowing
+            return(
+                <td id={"currentlyBorrowingTrue"}>False</td>
+            )
+        }
+        else {
+            //Returning true because user is no longer borrowing
+            return(
+            <td id={"currentlyBorrowingFalse"}>True</td>
+            )
+        }
+    }
+    const generateTableRows = () => {
+        return(
+            <>
+                {borrowRecords.map(function(record){
+                    return(
+                        <tr>
+                            <td>{branchDetails.branchId}</td>
+                            <td>{branchDetails.branchLocation}</td>
+                            <td>{record.mediaModelFormatConnection.mediaModel.mediaModelId}</td>
+                            <td>{record.mediaModelFormatConnection.mediaModel.title}</td>
+                            <td>{record.mediaModelFormatConnection.format.formatName}</td>
+                            <td>{record.userId}</td>
+                            <td>{generateDate(record.borrowDate)}</td>
+                            <td>{generateDate(record.returnDate)}</td>
+                            {currentlyBorrowingToString(record.currentlyBorrowing)}
+                        </tr>
+                    )
+                })}
+            </>
+        )
     }
     
     return(
         <>
-            <table>
+            <table id={"borrowTable"} className={"reportTable"}>
                 <tbody>
                 <tr>
                     <th>Branch ID</th>
@@ -26,6 +62,7 @@ const MediaBorrowRecordsByBranchTable = ({branchData}) => {
                     <th>Return Date</th>
                     <th>Returned</th>
                 </tr>
+                {generateTableRows()}
                 </tbody>
             </table>
         </>

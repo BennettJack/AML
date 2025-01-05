@@ -26,4 +26,10 @@ public interface IStockService
     public Task AddReserveRecord(ReserveRecord record);
     public Task<List<BorrowRecord>> GetBorrowRecordByDateAndBranch(int branchId, DateTime startDate, DateTime endDate);
     public Task<List<ReserveRecord>> GetReserveRecordByDateAndBranch(int branchId, DateTime startDate, DateTime endDate);
+
+    public Task<List<BorrowRecord>> GetBranchBorrowRecordsByMedia(int mediaId, int branchId, DateTime startDate,
+        DateTime endDate);
+
+    public Task<List<ReserveRecord>> GetBranchReserveRecordsByMedia(int mediaId, int branchId, DateTime startDate,
+        DateTime endDate);
 }

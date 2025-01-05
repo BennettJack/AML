@@ -57,11 +57,6 @@ public class StockControllerTest
         
     }
 
-
-
-
-
-
     private StockTransferDto GetDemoStockTransferDto()
     {
         var stockUpdate = new StockTransferDto

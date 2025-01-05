@@ -49,14 +49,30 @@ public class StockRepository: IStockRepository
 
     public async Task<List<BorrowRecord>> GetBorrowRecordByDateAndBranch(int branchId, DateTime startDate, DateTime endDate)
     {
-        return  await _context.BorrowRecords.Where(br => br.BranchId == branchId &&
+        return  await _context.BorrowRecords.Include(br => br.MediaModelFormatConnection.Format)
+            .Include(br => br.MediaModelFormatConnection.MediaModel).Where(br => br.BranchId == branchId &&
                                                          br.BorrowDate >= startDate && br.BorrowDate <= endDate).ToListAsync();
     }
 
     public async Task<List<ReserveRecord>> GetReserveRecordByDateAndBranch(int branchId, DateTime startDate, DateTime endDate)
     {
-        return  await _context.ReserveRecords.Include(br => br.MediaModelFormatConnection).Where(br => br.BranchId == branchId &&
+        return  await _context.ReserveRecords.Include(rr => rr.MediaModelFormatConnection.Format)
+            .Include(rr => rr.MediaModelFormatConnection.MediaModel).Where(br => br.BranchId == branchId &&
                                                          br.ReservationDate >= startDate && br.ReservationDate <= endDate).ToListAsync();
+    }
+
+    public async Task<List<BorrowRecord>> GetBranchBorrowRecordsByMedia(int mediaId, int branchId, DateTime startDate, DateTime endDate)
+    {
+        return  await _context.BorrowRecords.Include(br => br.MediaModelFormatConnection.Format)
+            .Include(br => br.MediaModelFormatConnection.MediaModel).Where(br => br.BranchId == branchId).Where(br => br.BorrowDate >= startDate)
+            .Where(br => br.BorrowDate <= endDate).Where(br => br.MediaModelFormatConnection.MediaModel.MediaModelId == mediaId).ToListAsync();
+    }
+
+    public async Task<List<ReserveRecord>> GetBranchReserveRecordsByMedia(int mediaId, int branchId, DateTime startDate, DateTime endDate)
+    {
+        return  await _context.ReserveRecords.Include(rr => rr.MediaModelFormatConnection.Format)
+            .Include(rr => rr.MediaModelFormatConnection.MediaModel).Where(br => (br.BranchId == branchId) &&
+                (br.ReservationDate >= startDate) && (br.ReservationDate <= endDate) && (br.MediaModelFormatConnection.MediaModel.MediaModelId == mediaId)).ToListAsync();
     }
 
     public Task<ReserveRecord> GetReserveRecordById(int id)

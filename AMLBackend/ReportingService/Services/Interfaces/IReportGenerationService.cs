@@ -1,6 +1,8 @@
-﻿namespace ReportingService.Services.Interfaces;
+﻿using ClosedXML.Excel;
+
+namespace ReportingService.Services.Interfaces;
 
 public interface IReportGenerationService
 {
-    public Task Test();
+    public Task<XLWorkbook> ConvertTableToExcel(string html);
 }
