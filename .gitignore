@@ -29,3 +29,6 @@
 /AmlBackend/BranchService/.idea
 /Frontend/.idea
 /AmlBackend/InventoryService/obj
+/AmlBackend/ApiGateway/bin
+/AmlBackend/BranchService/bin
+/AmlBackend/InventoryService/bin

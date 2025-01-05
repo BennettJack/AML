@@ -5,10 +5,6 @@
     min-height: 100vh; /* Ensure the wrapper spans the full viewport height */
 }
 
-.homeWrapper > *:not(footer) {
-    flex: 1; /* Allow content to expand and fill the space */
-}
-
 footer {
     flex-shrink: 0; /* Ensure the footer stays at the bottom */
 }
@@ -20,7 +16,7 @@ footer {
     align-items: center;
     flex-direction: column;
     text-align: center;
-    flex: 1; /* Ensures it takes up remaining space between Header and Footer */
+     /* Ensures it takes up remaining space between Header and Footer */
 }
 
 .homeContent h1 {

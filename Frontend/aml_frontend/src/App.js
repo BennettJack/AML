@@ -9,7 +9,7 @@ import {
     useParams
 } from "react-router-dom";
 import Home from './Pages/Home.js';
-import LibraryList from './Components/LibraryList.js';
+import LibraryList from './Pages/LibraryList.js';
 import MemberProfile from "./Components/MemberProfile";
 import Browse from './Pages/Browse.js';
 import MediaResult from './Pages/MediaResult.js';
@@ -20,6 +20,8 @@ import StockControlMainPage from "./Pages/StockControl/StockControlMainPage";
 import StockControlMediaView from "./Pages/StockControl/StockControlMediaView";
 import Reports from "./Pages/Reports/Reports";
 import MediaReports from "./Pages/Reports/MediaReports";
+import BranchDashboard from "./Pages/BranchDashboard";
+import BranchQueries from "./Pages/BranchQueries";
 
 function App() {
   return (
@@ -39,6 +41,8 @@ function App() {
           <Route path={"/StockControl/StockControlMediaView/:id"} element={<StockControlMediaView/>} />
           <Route path={"/Reports"} element={<Reports/>}/>
           <Route path={"/Reports/MediaReports"} element={<MediaReports/>}/>
+          <Route path={"/BranchDashboard"} element={<BranchDashboard/>} />
+          <Route path={"/BranchQueries"} element={<BranchQueries/>} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,9 +1,54 @@
-button {
-    display: inline-block;
-    padding: 5px 10px;
-    margin: 4px 20px;
+h1{
+    display: flex;
+    justify-content: center;
+}
+.buttonsContainer button {
+    list-style: none;
+    padding: 40px 20px;
+    margin: 14px 20px;
     cursor: pointer;
     background-color: rgb(0, 162, 255);
     border: none;
     color: rgb(255, 255, 255);
+    width: 50%;
 }
+.buttonsContainer button:hover {
+    background-color: rgb(255, 66, 66);
+}
+.buttonsContainer .button {
+    list-style: none;
+    padding: 40px 20px;
+    margin: 14px 20px;
+    cursor: pointer;
+    background-color: rgb(0, 162, 255);
+    border: none;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    text-align: center;
+    font-size: larger;
+    width: 47%;
+}
+.buttonsContainer .button:hover {
+    background-color: rgb(255, 66, 66);
+}
+.dashboardContainer {
+   display:flex;
+   padding-left: 10%;
+   padding-right: 10%;
+}
+.buttonsContainer {
+ }
+ .infoContainer {
+    padding-left: 20%;
+    padding-right: 20%;
+    border-style: solid;
+    border-width: 2px;
+ }
+ input[type=submit] {
+    padding: 5px 5px;
+    margin: 14px 40px;
+    cursor: pointer;
+    background-color: rgb(0, 162, 255);
+    border: none;
+    color: rgb(255, 255, 255);
+ }
