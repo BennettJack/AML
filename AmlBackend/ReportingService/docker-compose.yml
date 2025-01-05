@@ -1,0 +1,6 @@
+﻿services:
+  reportingservice:
+    image: reportingservice
+    build:
+      context: .
+      dockerfile: Dockerfile

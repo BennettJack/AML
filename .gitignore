@@ -33,3 +33,8 @@
 /AMLBackend/InventoryService/ISTest/obj
 /AmlBackend/InventoryService/obj
 AmlBackend/InventoryService/obj/InventoryService.csproj.nuget.g.props
+/AmlBackend/ReportingService/obj
+/AmlBackend/ReportingService/bin
+/AmlBackend/ReportingService/.idea
+/AMLBackend/ReportingService/.idea
+/AmlBackend/InventoryService/obj

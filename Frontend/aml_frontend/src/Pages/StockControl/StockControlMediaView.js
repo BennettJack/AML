@@ -13,7 +13,7 @@ const StockControlMediaView = () => {
     const [mediaItem, setMediaItem] = useState([])
     const [targetBranchId, setTargetBranchId] = useState(0)
     const [branches, setBranches] = useState([])
-    
+    const [selectedAction, setSelectedAction] = useState("");
     useEffect(() => {
         axios.get("https://localhost:7095/InventoryService/api/Stock/GetMediaStockRecords?mediaId="+id+"&branchId="+currentBranchId).then(res =>
             setMediaStockRecords(res.data)).catch((e) => console.log(e))
@@ -29,15 +29,19 @@ const StockControlMediaView = () => {
         if(e.target.name === "branchSelect") {
             setTargetBranchId(e.target.value)
         }
+        if(e.target.name === "actionSelect"){
+            setSelectedAction(e.target.value)
+        }
     }
     
-    return (
-            <>
-                <Header/>
-                <div id={"StockControlMediaViewWrapper"}>
-                    <div id={"mediaViewContainer"}>
-                        <MediaView mediaItem={mediaItem}/>
-                    </div>
+    const selectedActionComponent = () => {
+        switch(selectedAction){
+            case "" :
+            return(
+                <p>Please select an action to perform</p>
+            )
+            case "transferStock" : {
+                return (
                     <div id={"stockTransferFormWrapper"}>
                         <h3>Select branch to transfer to</h3>
                         <form id={"selectBranchTransferForm"}>
@@ -57,9 +61,32 @@ const StockControlMediaView = () => {
                         <StockTransferForm mediaStockRecords={mediaStockRecords} mediaItem={mediaItem}
                                            targetBranchId={targetBranchId} currentBranchId={currentBranchId}/>
                     </div>
+                )
+            }
+        }
+    }
+    return (
+        <>
+            <Header/>
+            <div id={"StockControlMediaViewWrapper"}>
+                <div id={"mediaViewContainer"}>
+                    <MediaView mediaItem={mediaItem}/>
+
+                <label htmlFor={"actionSelect"}>Select Action</label>
+                <select
+                    onChange={handleChange}
+                    name={"actionSelect"}
+                    id={"actionSelect"}
+                >
+                    <option value={""}>Please Select</option>
+                    <option value={"transferStock"}>Transfer stock</option>
+                </select>
                 </div>
-                <Footer/>
-            </>
+                {selectedActionComponent()}
+
+            </div>
+            <Footer/>
+        </>
     )
 }
 

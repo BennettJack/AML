@@ -139,6 +139,16 @@ public class StockService(IStockRepository stockRepository) : IStockService
         await stockRepository.AddReserveRecord(record);
     }
 
+    public async Task<List<BorrowRecord>> GetBorrowRecordByDateAndBranch(int branchId, DateTime startDate, DateTime endDate)
+    {
+        return await stockRepository.GetBorrowRecordByDateAndBranch(branchId, startDate, endDate);
+    }
+
+    public async Task<List<ReserveRecord>> GetReserveRecordByDateAndBranch(int branchId, DateTime startDate, DateTime endDate)
+    {
+        return await stockRepository.GetReserveRecordByDateAndBranch(branchId, startDate, endDate);
+    }
+
     public async Task<BorrowRecord> GetBorrowRecordById(int id)
     {
         return await stockRepository.GetBorrowRecordById(id);

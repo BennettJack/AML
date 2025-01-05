@@ -71,6 +71,20 @@ namespace InventoryService.Controllers
             return await _stockService.GetBorrowRecordById(id);
         }
         
+        [HttpGet]
+        [Route("GetBranchBorrowRecordsByDate")]
+        public async Task<List<BorrowRecord>> GetBranchBorrowRecordsByDate(int branchId, DateTime startDate, DateTime endDate)
+        {
+            return await _stockService.GetBorrowRecordByDateAndBranch(branchId, startDate, endDate);
+        }
+        
+        [HttpGet]
+        [Route("GetBranchReserveRecordsByDate")]
+        public async Task<List<ReserveRecord>> GetBranchReserveRecordsByDate(int branchId, DateTime startDate, DateTime endDate)
+        {
+            return await _stockService.GetReserveRecordByDateAndBranch(branchId, startDate, endDate);
+        }
+        
     }
         
     

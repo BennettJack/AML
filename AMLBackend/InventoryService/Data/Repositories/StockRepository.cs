@@ -46,6 +46,19 @@ public class StockRepository: IStockRepository
     {
         return await _context.ReserveRecords.ToListAsync();
     }
+
+    public async Task<List<BorrowRecord>> GetBorrowRecordByDateAndBranch(int branchId, DateTime startDate, DateTime endDate)
+    {
+        return  await _context.BorrowRecords.Where(br => br.BranchId == branchId &&
+                                                         br.BorrowDate >= startDate && br.BorrowDate <= endDate).ToListAsync();
+    }
+
+    public async Task<List<ReserveRecord>> GetReserveRecordByDateAndBranch(int branchId, DateTime startDate, DateTime endDate)
+    {
+        return  await _context.ReserveRecords.Include(br => br.MediaModelFormatConnection).Where(br => br.BranchId == branchId &&
+                                                         br.ReservationDate >= startDate && br.ReservationDate <= endDate).ToListAsync();
+    }
+
     public Task<ReserveRecord> GetReserveRecordById(int id)
     {
         throw new NotImplementedException();

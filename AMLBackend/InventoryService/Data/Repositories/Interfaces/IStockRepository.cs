@@ -26,4 +26,7 @@ public interface IStockRepository
     Task AddBorrowRecord(BorrowRecord record);
     Task AddReserveRecord(ReserveRecord record);
     Task<List<ReserveRecord>> GetAllReserveRecords();
+    
+    public Task<List<BorrowRecord>> GetBorrowRecordByDateAndBranch(int branchId, DateTime startDate, DateTime endDate);
+    public Task<List<ReserveRecord>> GetReserveRecordByDateAndBranch(int branchId, DateTime startDate, DateTime endDate);
 }
