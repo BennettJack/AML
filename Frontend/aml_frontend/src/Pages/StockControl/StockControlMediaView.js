@@ -15,7 +15,7 @@ const StockControlMediaView = () => {
     const [branches, setBranches] = useState([])
     const [selectedAction, setSelectedAction] = useState("");
     useEffect(() => {
-        axios.get("https://localhost:7095/InventoryService/api/Stock/GetMediaStockRecords?mediaId="+id+"&branchId="+currentBranchId).then(res =>
+        axios.get("https://localhost:7095/InventoryService/api/Stock/GetMediaStockRecordsByBranch?mediaId="+id+"&branchId="+currentBranchId).then(res =>
             setMediaStockRecords(res.data)).catch((e) => console.log(e))
 
         axios.get("https://localhost:7095/InventoryService/api/MediaModel/GetMediaById?mediaId="+id).then(res =>

@@ -23,7 +23,7 @@ public class ReportsController : ControllerBase
     {
         return Ok();
     }
-    
+
     [HttpPost]
     [Route("ConvertTableToExcel")]
     public async Task<IActionResult> ConvertTableToExcel([FromBody] HtmlContentDto htmlContent)
@@ -35,24 +35,22 @@ public class ReportsController : ControllerBase
             var fileName = "report";
             Console.WriteLine("it got here without dying");
             var stream = new MemoryStream();
-            
-                workbook.SaveAs(stream);
-                stream.Seek(0, SeekOrigin.Begin);
 
-                // Return the file as a FileResult
-                return File(
-                    stream,
-                    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", // MIME type for Excel files
-                    "Example.xlsx" // File name for download
-                );
-            
+            workbook.SaveAs(stream);
+            stream.Seek(0, SeekOrigin.Begin);
+
+            // Return the file as a FileResult
+            return File(
+                stream,
+                contentType,
+                fileName
+            );
+
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
-            return BadRequest("yeah it died lmao");
+            return BadRequest(e.Message);
         }
-        
-        
     }
 }

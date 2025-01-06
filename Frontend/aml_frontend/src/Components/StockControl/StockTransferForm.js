@@ -25,7 +25,7 @@ const StockTransferForm = ({mediaStockRecords, mediaItem,targetBranchId,currentB
 
     useEffect(() => {
         if(targetBranchId !== 0) {
-            axios.get("https://localhost:7095/InventoryService/api/Stock/GetMediaStockRecords?mediaId=" + mediaItem.mediaModelId + "&branchId=" + targetBranchId).then(res =>
+            axios.get("https://localhost:7095/InventoryService/api/Stock/GetMediaStockRecordsByBranch?mediaId=" + mediaItem.mediaModelId + "&branchId=" + targetBranchId).then(res =>
                 setTargetBranchStockRecords(res.data)).catch((e) => console.log(e))
         }
     }, [targetBranchId]);

@@ -64,6 +64,15 @@ const MediaReports = () => {
         if(selectedMediaItem === "all"){
             axios.get("https://localhost:7095/InventoryService/api/Stock/GetAllMediaStockRecordsByBranch?&branchId="+currentBranchId).then(res =>
                 setStockRecords(res.data)).catch((e) => console.log(e))
+            
+            axios.get("https://localhost:7095/InventoryService/api/Stock/GetBranchReserveRecordsByDate?&branchId=" + currentBranchId +
+                "&startDate=" + startDate.toJSON() + "&endDate=" + endDate.toJSON()).then(res =>
+                setReserveRecords(res.data)).catch((e) => console.log(e))
+
+            axios.get("https://localhost:7095/InventoryService/api/Stock/GetBranchBorrowRecordsByDate?&branchId=" + currentBranchId +
+                "&startDate=" + startDate.toJSON() + "&endDate=" + endDate.toJSON()).then(res =>
+                setBorrowRecords(res.data)).catch((e) => console.log(e))
+            
         }
         else{
             axios.get("https://localhost:7095/InventoryService/api/Stock/GetMediaStockRecordsByBranch?&mediaId="+selectedMediaItem+"&branchId="+currentBranchId).then(res =>
@@ -90,11 +99,11 @@ const MediaReports = () => {
         return(
             <>
                 <MediaStockRecordsByBranchTable branchDetails={currentBranch} stockRecords={stockRecords}/>
-                <button onClick={(e) => handleDownload("Stock Records")}>Download as CSV</button>
+                <button tabIndex={4} onClick={(e) => handleDownload("Stock Records")}>Download as CSV</button>
                 <MediaBorrowRecordsByBranchTable branchDetails={currentBranch} borrowRecords={borrowRecords}/>
-                <button onClick={(e) => handleDownload("Borrow Records")}>Download as CSV</button>
+                <button tabIndex={5} onClick={(e) => handleDownload("Borrow Records")}>Download as CSV</button>
                 <MediaReserveRecordsByBranchTable branchDetails={currentBranch} reserveRecords={reserveRecords}/>
-                <button onClick={(e) => handleDownload("Reserve Records")}>Download as CSV</button>
+                <button tabIndex={6} onClick={(e) => handleDownload("Reserve Records")}>Download as CSV</button>
             </>
         )
     }
@@ -109,6 +118,7 @@ const MediaReports = () => {
         });
         a.click();
     };
+    
     const handlePost = async (tableType, htmlContent) => {
         axios.post("https://localhost:7168/api/Reports/ConvertTableToExcel", {
             htmlContent: JSON.stringify(htmlContent).replace(/\\\\,/g, '\\,')
@@ -128,6 +138,7 @@ const MediaReports = () => {
                 console.log(error.message);
             });
     }
+    
     const handleDownload = async (tableType) =>{
         switch (tableType){
             case "Reserve Records":
@@ -144,35 +155,40 @@ const MediaReports = () => {
                 await handlePost(tableType, stockContent)
                 break;
         }
-        
-
     }
+    
     const renderForm = () =>{
         return(
             <>
                 <Header/>
-                <DatePicker
-                    selected={startDate} onChange={(date) => setStartDate(date)}
-                    dateFormat="dd/MM/yyyy"
-                />
-                <DatePicker
-                    selected={endDate} onChange={(date) => setEndDate(date)}
-                    dateFormat="dd/MM/yyyy"
-                />
-                <form>
-                    <select
-                        onChange={handleChange}
-                        name={"mediaSelect"}
-                        id={"mediaSelect"}
-                    >
-                        <option selected={true} value={"all"}>All media</option>
-                        {mediaItems.map(function (mediaItem) {
-                            return (
-                                <option value={mediaItem.mediaModelId}>{mediaItem.title}</option>
-                            )
-                        })}
-                    </select>
-                </form>
+                <h1 id={"mediaReportsHeader"}>Media Reports</h1>
+                <div id={"reportInputsContainer"}>
+                    <DatePicker
+                        selected={startDate} onChange={(date) => setStartDate(date)}
+                        dateFormat="dd/MM/yyyy"
+                        tabIndex={1}
+                    />
+                    <DatePicker
+                        selected={endDate} onChange={(date) => setEndDate(date)}
+                        dateFormat="dd/MM/yyyy"
+                        tabIndex={2}
+                    />
+                    <form>
+                        <select
+                            onChange={handleChange}
+                            name={"mediaSelect"}
+                            id={"mediaSelect"}
+                            tabIndex={3}
+                        >
+                            <option selected={true} value={"all"}>All media</option>
+                            {mediaItems.map(function (mediaItem) {
+                                return (
+                                    <option value={mediaItem.mediaModelId}>{mediaItem.title}</option>
+                                )
+                            })}
+                        </select>
+                    </form>
+                </div>
                 {renderTables()}
                 
                 <Footer/>

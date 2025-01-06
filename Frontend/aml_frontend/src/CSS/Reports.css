@@ -14,3 +14,27 @@
     border: 1px solid black;
     padding: 10px;
 }
+
+#reportInputsContainer > *{
+    display: inline-block;
+}
+
+#reportInputsContainer{
+    margin-left: 50px;
+}
+
+#mediaSelect{
+    width:140px;
+    height:40px;
+    border-radius: 100px;
+    border: thin solid black;
+    text-align: center;
+}
+
+#mediaSelect:hover{
+    cursor: pointer;
+}
+
+#mediaReportsHeader{
+    text-align: center;
+}

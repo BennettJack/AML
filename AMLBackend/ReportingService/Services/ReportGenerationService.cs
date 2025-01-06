@@ -18,41 +18,37 @@ public class ReportGenerationService : IReportGenerationService
 
     public async Task<XLWorkbook> ConvertTableToExcel(string html)
     {
-        DataTable dataTable = HtmlToDataTable(html);
-
-        // Save DataTable to Excel
+        DataTable dataTable = ConvertHtmlToDataTable(html);
         var excelFile = new XLWorkbook();
-        excelFile.Worksheets.Add(dataTable, "Sheet1");
+        excelFile.Worksheets.Add(dataTable, "report");
         return excelFile;
     }
     
-    private DataTable HtmlToDataTable(string html)
+    private DataTable ConvertHtmlToDataTable(string html)
     {
-        var doc = new HtmlDocument();
-        doc.LoadHtml(html);
+        var htmlDocument = new HtmlDocument();
+        htmlDocument.LoadHtml(html);
 
-        var table = new DataTable();
-        var rows = doc.DocumentNode.SelectNodes("//table/tr|//table/thead/tr|//table/tbody/tr");
-
-        // Process header row
-        var headerCells = rows[0].SelectNodes("th|td");
-        foreach (var headerCell in headerCells)
+        var dataTable = new DataTable();
+        var tableRows = htmlDocument.DocumentNode.SelectNodes("//table/tr|//table/thead/tr|//table/tbody/tr");
+        
+        var tableHeaders = tableRows[0].SelectNodes("th|td");
+        foreach (var header in tableHeaders)
         {
-            table.Columns.Add(headerCell.InnerText.Trim());
+            dataTable.Columns.Add(header.InnerText.Trim());
         }
-
-        // Process data rows
-        for (int i = 1; i < rows.Count; i++)
+        
+        for (int i = 1; i < tableRows.Count; i++)
         {
-            var cells = rows[i].SelectNodes("th|td");
-            var row = table.NewRow();
+            var cells = tableRows[i].SelectNodes("th|td");
+            var row = dataTable.NewRow();
             for (int j = 0; j < cells.Count; j++)
             {
                 row[j] = cells[j].InnerText.Trim();
             }
-            table.Rows.Add(row);
+            dataTable.Rows.Add(row);
         }
 
-        return table;
+        return dataTable;
     }
 }
