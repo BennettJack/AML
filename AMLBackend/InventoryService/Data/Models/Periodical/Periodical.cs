@@ -7,7 +7,6 @@ namespace InventoryService.Data.Models
     public class Periodical : MediaModel
     {
         
-        public int PeriodicalId { get; set; }
         public int? PageCount { get; set; }
         
     }

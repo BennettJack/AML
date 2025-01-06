@@ -1,9 +1,10 @@
-﻿using InventoryService.Data.Models.Media;
+﻿using InventoryService.Data.Models.CDDVD;
+using InventoryService.Data.Models.Media;
 
 namespace InventoryService.Data.Models
 {
     public class CdDvd : MediaModel
     {
-        public int CdDvdId { get; set; }
+        public List<CdTrack> Tracks { get; set; }
     }
 }
