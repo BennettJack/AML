@@ -129,7 +129,7 @@ const MediaReports = () => {
     };
     
     const handlePost = async (tableType, htmlContent) => {
-        axios.post("https://localhost:7168/api/Reports/ConvertTableToExcel", {
+        axios.post("https://localhost:7095/ReportingService/api/Reports/ConvertTableToExcel", {
             htmlContent: JSON.stringify(htmlContent).replace(/\\\\,/g, '\\,')
         }, {
             headers: {
