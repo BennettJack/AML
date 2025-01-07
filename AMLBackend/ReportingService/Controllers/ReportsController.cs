@@ -33,7 +33,6 @@ public class ReportsController : ControllerBase
             var workbook = await _reportingService.ConvertTableToExcel(htmlContent.HtmlContent);
             var contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
             var fileName = "report";
-            Console.WriteLine("it got here without dying");
             var stream = new MemoryStream();
 
             workbook.SaveAs(stream);

@@ -19,8 +19,6 @@ namespace InventoryService.Data
         }
         public virtual DbSet<MediaModel> MediaModels { get; set; }
         public virtual DbSet<Book> Books { get; set; }
-        public virtual DbSet<Journal> Journals { get; set; }
-        public virtual DbSet<MultiMediaGame> MultiMediaGames { get; set; }
         public virtual DbSet<Periodical> Periodicals { get; set; }
         public virtual DbSet<CdDvd> CdDvds { get; set; }
         public virtual DbSet<CdTrack> CdTracks { get; set; }

@@ -1,4 +1,5 @@
-﻿using InventoryService.Data;
+﻿using System.Net;
+using InventoryService.Data;
 using InventoryService.Data.Models;
 using InventoryService.Data.Models.DTO;
 using InventoryService.Data.Repositories.Interfaces;
@@ -50,55 +51,63 @@ namespace InventoryService.Controllers
 
         [HttpGet]
         [Route("GetMediaStockRecordsByBranch")]
-        public async Task<List<BranchStockRecordDto>> GetMediaStockRecordsByBranch(int mediaId, int branchId)
+        public async Task<IActionResult> GetMediaStockRecordsByBranch(int mediaId, int branchId)
         {
             var stockRecords = _stockService.GetStockRecords(mediaId, branchId).Result;
-            return stockRecords;
+            return Ok(stockRecords);
         }
         
         [HttpGet]
         [Route("GetAllMediaStockRecordsByBranch")]
-        public async Task<List<BranchStockRecordDto>> GetAllMediaStockRecordsByBranch(int branchId)
+        public async Task<IActionResult> GetAllMediaStockRecordsByBranch(int branchId)
         {
             var stockRecords = _stockService.GetStockRecords(branchId).Result;
-            return stockRecords;
+            return Ok(stockRecords);
         }
         
 
         [HttpGet]
         [Route("GetBorrowRecordById")]
-        public async Task<BorrowRecord> GetBorrowRecordById(int id)
+        public async Task<IActionResult> GetBorrowRecordById(int id)
         {
-            return await _stockService.GetBorrowRecordById(id);
+            var records = await _stockService.GetBorrowRecordById(id);
+            return Ok(records);
         }
         
         [HttpGet]
         [Route("GetBranchBorrowRecordsByDate")]
-        public async Task<List<BorrowRecord>> GetBranchBorrowRecordsByDate(int branchId, DateTime startDate, DateTime endDate)
+        public async Task<IActionResult> GetBranchBorrowRecordsByDate(int branchId, DateTime startDate, DateTime endDate)
         {
-            return await _stockService.GetBorrowRecordByDateAndBranch(branchId, startDate, endDate);
+            if (branchId == 0)
+            {
+                
+            }
+            var records = await _stockService.GetBorrowRecordByDateAndBranch(branchId, startDate, endDate);
+            return Ok(records);
         }
         
         [HttpGet]
         [Route("GetBranchReserveRecordsByDate")]
-        public async Task<List<ReserveRecord>> GetBranchReserveRecordsByDate(int branchId, DateTime startDate, DateTime endDate)
+        public async Task<IActionResult> GetBranchReserveRecordsByDate(int branchId, DateTime startDate, DateTime endDate)
         {
-            return await _stockService.GetReserveRecordByDateAndBranch(branchId, startDate, endDate);
+            var records = await _stockService.GetReserveRecordByDateAndBranch(branchId, startDate, endDate);
+            return Ok(records);
         }
         
         [HttpGet]
         [Route("GetBranchBorrowRecordsByMedia")]
-        public async Task<List<BorrowRecord>> GetBranchBorrowRecordsByMedia(int mediaId, int branchId, DateTime startDate, DateTime endDate)
+        public async Task<IActionResult> GetBranchBorrowRecordsByMedia(int mediaId, int branchId, DateTime startDate, DateTime endDate)
         {
-            return await _stockService.GetBranchBorrowRecordsByMedia(mediaId, branchId, startDate, endDate);
+            var records = await _stockService.GetBranchBorrowRecordsByMedia(mediaId, branchId, startDate, endDate);
+            return Ok(records);
         }
         
         [HttpGet]
         [Route("GetBranchReserveRecordsByMedia")]
-        public async Task<List<ReserveRecord>> GetBranchReserveRecordsByMedia(int mediaId, int branchId, DateTime startDate, DateTime endDate)
+        public async Task<IActionResult> GetBranchReserveRecordsByMedia(int mediaId, int branchId, DateTime startDate, DateTime endDate)
         {
-            
-            return await _stockService.GetBranchReserveRecordsByMedia(mediaId, branchId, startDate, endDate);
+            var records = await _stockService.GetBranchReserveRecordsByMedia(mediaId, branchId, startDate, endDate);
+            return Ok(records);
         }
         
     }

@@ -2,8 +2,7 @@
 using ClosedXML.Excel;
 using HtmlAgilityPack;
 using Microsoft.AspNetCore.Http.HttpResults;
-using ReportingService.Repositories;
-using ReportingService.Repositories.Interfaces;
+
 using ReportingService.Services.Interfaces;
 using Xunit.Sdk;
 

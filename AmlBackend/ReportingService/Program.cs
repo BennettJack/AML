@@ -1,6 +1,3 @@
-using System.Net;
-using ReportingService.Repositories;
-using ReportingService.Repositories.Interfaces;
 using ReportingService.Services;
 using ReportingService.Services.Interfaces;
 
@@ -13,7 +10,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<HttpClient>();
-builder.Services.AddScoped<IInventoryServiceRepository, InventoryServiceRepository>();
 builder.Services.AddScoped<IReportGenerationService, ReportGenerationService>();
 
 var app = builder.Build();

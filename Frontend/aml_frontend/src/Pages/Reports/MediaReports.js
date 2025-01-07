@@ -153,7 +153,6 @@ const MediaReports = () => {
             case "Reserve Records":
                 let reserveContent = document.getElementById("reserveTable").outerHTML
                 await handlePost(tableType, reserveContent)
-                console.log(test)
                 break;
             case "Borrow Records":
                 let borrowContent = document.getElementById("borrowTable").outerHTML

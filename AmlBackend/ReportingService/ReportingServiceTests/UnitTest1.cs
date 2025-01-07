@@ -9,11 +9,10 @@ namespace ReportingServiceTest;
 
 public class ReportingServiceTest
 {
-    private readonly ReportsController _reportsController;
+    private readonly ReportGenerationService _service;
     public ReportingServiceTest()
     {
-        var service = new ReportGenerationService();
-        _reportsController = new ReportsController(service);
+        _service = new ReportGenerationService();
     }
     [Fact]
     public async void TestBadHtmlPresented()
@@ -49,17 +48,10 @@ public class ReportingServiceTest
         </tbody>";
         
         //Act
-
-        var test = new HtmlContentDto
-        {
-            HtmlContent = badHtmlTable
-        };
-        
-        var res = await _reportsController.ConvertTableToExcel(test);
-        
+        var res = await Assert.ThrowsAsync<NullReferenceException>(() =>  _service.ConvertTableToExcel(badHtmlTable));
         //Assert
-        Assert.NotNull(res);
-        var resType = Assert.IsType<BadRequestObjectResult>(res);
-        Assert.Equal("Provided HTML table is not in a valid format", resType.Value);
+       
+        var exception = res.Message;
+        Assert.Equal("Provided HTML table is not in a valid format", exception);
     }
 }
