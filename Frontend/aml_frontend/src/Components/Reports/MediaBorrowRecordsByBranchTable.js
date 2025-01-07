@@ -26,29 +26,39 @@ const MediaBorrowRecordsByBranchTable = ({branchDetails, borrowRecords}) => {
         }
     }
     const generateTableRows = () => {
-        return(
-            <>
-                {borrowRecords.map(function(record){
-                    return(
-                        <tr>
-                            <td>{branchDetails.branchId}</td>
-                            <td>{branchDetails.branchLocation}</td>
-                            <td>{record.mediaModelFormatConnection.mediaModel.mediaModelId}</td>
-                            <td>{record.mediaModelFormatConnection.mediaModel.title}</td>
-                            <td>{record.mediaModelFormatConnection.format.formatName}</td>
-                            <td>{record.userId}</td>
-                            <td>{generateDate(record.borrowDate)}</td>
-                            <td>{generateDate(record.returnDate)}</td>
-                            {currentlyBorrowingToString(record.currentlyBorrowing)}
-                        </tr>
-                    )
-                })}
-            </>
-        )
+        if(borrowRecords.length > 0) {
+            return (
+                <>
+                    {borrowRecords.map(function (record) {
+                        return (
+                            <tr>
+                                <td>{branchDetails.branchId}</td>
+                                <td>{branchDetails.branchLocation}</td>
+                                <td>{record.mediaModelFormatConnection.mediaModel.mediaModelId}</td>
+                                <td>{record.mediaModelFormatConnection.mediaModel.title}</td>
+                                <td>{record.mediaModelFormatConnection.format.formatName}</td>
+                                <td>{record.userId}</td>
+                                <td>{generateDate(record.borrowDate)}</td>
+                                <td>{generateDate(record.returnDate)}</td>
+                                {currentlyBorrowingToString(record.currentlyBorrowing)}
+                            </tr>
+                        )
+                    })}
+                </>
+            )
+        }
+        else{
+            return (
+                <tr>
+                    <td colSpan={9}>No records for selected parameters </td>
+                </tr>
+            )
+        }
     }
     
     return(
         <>
+            <h2>Borrow Records</h2>
             <table id={"borrowTable"} className={"reportTable"}>
                 <tbody>
                 <tr>

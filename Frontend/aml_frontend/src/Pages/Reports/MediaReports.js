@@ -98,12 +98,21 @@ const MediaReports = () => {
     const renderTables = () =>{
         return(
             <>
-                <MediaStockRecordsByBranchTable branchDetails={currentBranch} stockRecords={stockRecords}/>
-                <button tabIndex={4} onClick={(e) => handleDownload("Stock Records")}>Download as CSV</button>
-                <MediaBorrowRecordsByBranchTable branchDetails={currentBranch} borrowRecords={borrowRecords}/>
-                <button tabIndex={5} onClick={(e) => handleDownload("Borrow Records")}>Download as CSV</button>
-                <MediaReserveRecordsByBranchTable branchDetails={currentBranch} reserveRecords={reserveRecords}/>
-                <button tabIndex={6} onClick={(e) => handleDownload("Reserve Records")}>Download as CSV</button>
+                <div className={"reportTableContainer"}>
+                    <MediaStockRecordsByBranchTable branchDetails={currentBranch} stockRecords={stockRecords}/>
+                    <button tabIndex={4} onClick={(e)=> 
+                        handleDownload("Stock Records")}>Download as CSV</button>
+                </div>
+                <div className={"reportTableContainer"}>
+                    <MediaBorrowRecordsByBranchTable branchDetails={currentBranch} borrowRecords={borrowRecords}/>
+                    <button tabIndex={5} onClick={(e)=> 
+                        handleDownload("Borrow Records")} >Download as CSV</button>
+                </div>
+                <div className={"reportTableContainer"}>
+                    <MediaReserveRecordsByBranchTable branchDetails={currentBranch} reserveRecords={reserveRecords}/>
+                    <button tabIndex={6} onClick={(e)=> 
+                        handleDownload("Reserve Records")}>Download as CSV</button>
+                </div>
             </>
         )
     }

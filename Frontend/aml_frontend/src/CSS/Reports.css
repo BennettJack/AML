@@ -7,7 +7,14 @@
     border-collapse: collapse;
     width: 100%;
     text-align: left;
+}
+
+.reportTableContainer{
     margin-top: 50px;
+}
+
+.reportTableContainer > button{
+    float: right;
 }
 
 .reportTable td, .reportTable th{

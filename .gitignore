@@ -39,3 +39,7 @@ AmlBackend/InventoryService/obj/InventoryService.csproj.nuget.g.props
 /AMLBackend/ReportingService/.idea
 /AmlBackend/InventoryService/obj
 /AmlBackend/InventoryService/obj
+/AmlBackend/ReportingService/ReportingServiceTests/bin
+/AmlBackend/ReportingService/ReportingServiceTests/obj
+/AmlBackend/PublishedServices
+/AmlBackend/InventoryService/obj

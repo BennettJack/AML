@@ -1,27 +1,31 @@
 ﻿using System.Data;
 using ClosedXML.Excel;
 using HtmlAgilityPack;
+using Microsoft.AspNetCore.Http.HttpResults;
 using ReportingService.Repositories;
 using ReportingService.Repositories.Interfaces;
 using ReportingService.Services.Interfaces;
+using Xunit.Sdk;
 
 namespace ReportingService.Services;
 
 public class ReportGenerationService : IReportGenerationService
 {
-    private readonly IInventoryServiceRepository _inventoryServiceRepository;
-
-    public ReportGenerationService(IInventoryServiceRepository rep)
-    {
-        _inventoryServiceRepository = rep;
-    }
-
     public async Task<XLWorkbook> ConvertTableToExcel(string html)
     {
-        DataTable dataTable = ConvertHtmlToDataTable(html);
-        var excelFile = new XLWorkbook();
-        excelFile.Worksheets.Add(dataTable, "report");
-        return excelFile;
+        try
+        {
+            DataTable dataTable = ConvertHtmlToDataTable(html);
+
+
+            var excelFile = new XLWorkbook();
+            excelFile.Worksheets.Add(dataTable, "report");
+            return excelFile;
+        }
+        catch (NullReferenceException)
+        {
+            throw new NullReferenceException("Provided HTML table is not in a valid format");
+        }
     }
     
     private DataTable ConvertHtmlToDataTable(string html)
